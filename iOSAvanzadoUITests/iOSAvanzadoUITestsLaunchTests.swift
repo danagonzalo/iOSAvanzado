@@ -1,10 +1,3 @@
-//
-//  iOSAvanzadoUITestsLaunchTests.swift
-//  iOSAvanzadoUITests
-//
-//  Created by Dana Gonzalo on 24/10/23.
-//
-
 import XCTest
 
 final class iOSAvanzadoUITestsLaunchTests: XCTestCase {

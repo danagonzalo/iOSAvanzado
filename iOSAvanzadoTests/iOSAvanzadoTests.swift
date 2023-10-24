@@ -1,10 +1,3 @@
-//
-//  iOSAvanzadoTests.swift
-//  iOSAvanzadoTests
-//
-//  Created by Dana Gonzalo on 24/10/23.
-//
-
 import XCTest
 @testable import iOSAvanzado
 
