@@ -1,19 +1,14 @@
-//
-//  SplashViewModel.swift
-//  DragonBall
-//
-//  Created by David Jardon on 19/10/23.
-//
-
 import Foundation
 
 
 class SplashViewModel: SplashViewControllerDelegate {
+    
+    // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
 
+    
     var viewState: ((SplashViewState) -> Void)?
-
     lazy var loginViewModel: LoginViewControllerDelegate = {
         LoginViewModel(
             apiProvider: apiProvider,
@@ -22,10 +17,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     }()
 
     lazy var heroesViewModel: HeroesViewControllerDelegate = {
-        HeroesViewModel(
-            apiProvider: apiProvider,
-            secureDataProvider: secureDataProvider
-        )
+        HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
     }()
 
     private var isLogged: Bool {
@@ -41,7 +33,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     func onViewAppear() {
         viewState?(.loading(true))
 
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(3)) {
             self.isLogged ? self.viewState?(.navigateToHeroes) : self.viewState?(.navigateToLogin)
         }
     }

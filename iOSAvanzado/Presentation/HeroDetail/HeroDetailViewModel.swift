@@ -1,10 +1,3 @@
-//
-//  HeroDetailViewModel.swift
-//  DragonBall
-//
-//  Created by David Jardon on 19/10/23.
-//
-
 import Foundation
 
 

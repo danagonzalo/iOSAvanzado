@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - View protocol
 protocol SplashViewControllerDelegate {
     var viewState: ((SplashViewState) -> Void)? { get set }
     var loginViewModel: LoginViewControllerDelegate { get }
@@ -8,6 +9,7 @@ protocol SplashViewControllerDelegate {
     func onViewAppear()
 }
 
+// MARK: - View state
 enum SplashViewState {
     case loading(_ isLoading: Bool)
     case navigateToLogin
@@ -27,7 +29,7 @@ class SplashViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 

@@ -7,8 +7,9 @@ protocol ApiProviderProtocol {
 }
 
 class ApiProvider: ApiProviderProtocol {
-    // MARK: - Constants -
+    // MARK: - Constants
     static private let apiBaseURL = "https://dragonball.keepcoding.education/api"
+    
     private enum Endpoint {
         static let login = "/auth/login"
         static let heroes = "/heros/all"
@@ -16,23 +17,22 @@ class ApiProvider: ApiProviderProtocol {
     }
 
 
-    // MARK: - ApiProviderProtocol -
+    // MARK: - Login
     func login(for user: String, with password: String) {
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.login)") else {
             // TODO: Enviar notificación indicando el error
             return
         }
 
-        guard let loginData = String(format: "%@:%@",
-                                     user, password).data(using: .utf8)?.base64EncodedString() else {
+        guard let loginData = String(format: "%@:%@", user, password)
+            .data(using: .utf8)?.base64EncodedString() else {
             // TODO: Enviar notificación indicando el error
             return
         }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
-        urlRequest.setValue("Basic \(loginData)",
-                            forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("Basic \(loginData)", forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard error == nil else {
@@ -59,6 +59,7 @@ class ApiProvider: ApiProviderProtocol {
         }.resume()
     }
 
+    // MARK: - Get heroes
     func getHeroes(by name: String?, token: String, completion: ((Heroes) -> Void)?) {
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroes)") else {
             // TODO: Enviar notificación indicando el error
@@ -70,10 +71,8 @@ class ApiProvider: ApiProviderProtocol {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json; charset=utf-8",
-                            forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)",
-                            forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = jsonParameters
 
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
@@ -101,6 +100,7 @@ class ApiProvider: ApiProviderProtocol {
         }.resume()
     }
 
+    // MARK: - Get locations for hero
     func getLocations(by heroId: String?, token: String, completion: ((HeroLocations) -> Void)?) {
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroLocations)") else {
             // TODO: Enviar notificación indicando el error
@@ -112,10 +112,8 @@ class ApiProvider: ApiProviderProtocol {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json; charset=utf-8",
-                            forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)",
-                            forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)",  forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = jsonParameters
 
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
@@ -144,7 +142,7 @@ class ApiProvider: ApiProviderProtocol {
     }
 }
 
-// MARK: - Extension
+// MARK: - Extension notification center
 extension NotificationCenter {
     static let apiLoginNotification = Notification.Name("NOTIFICATION_API_LOGIN")
     static let tokenKey = "KEY_TOKEN"

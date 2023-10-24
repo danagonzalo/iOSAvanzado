@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		992194D12AE7EEEC00FAB0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */; };
 		992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */; };
-		992194DB2AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 992194D92AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodeld */; };
 		992194DD2AE7EEEE00FAB0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 992194DC2AE7EEEE00FAB0CC /* Assets.xcassets */; };
 		992194EB2AE7EEEE00FAB0CC /* iOSAvanzadoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194EA2AE7EEEE00FAB0CC /* iOSAvanzadoTests.swift */; };
 		992194F52AE7EEEE00FAB0CC /* iOSAvanzadoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194F42AE7EEEE00FAB0CC /* iOSAvanzadoUITests.swift */; };
@@ -61,7 +60,6 @@
 		992194CD2AE7EEEC00FAB0CC /* iOSAvanzado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAvanzado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		992194DA2AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSAvanzado.xcdatamodel; sourceTree = "<group>"; };
 		992194DC2AE7EEEE00FAB0CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		992194E12AE7EEEE00FAB0CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		992194E62AE7EEEE00FAB0CC /* iOSAvanzadoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAvanzadoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				992195132AE7F2BD00FAB0CC /* Models */,
-				992194D92AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodeld */,
 				9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */,
 				992195112AE7F28E00FAB0CC /* CoreDataStack.swift */,
 			);
@@ -235,11 +232,11 @@
 		9921951C2AE7F35500FAB0CC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				9921951D2AE7F35500FAB0CC /* Splash */,
-				992195212AE7F35500FAB0CC /* Heroes */,
 				992195282AE7F35500FAB0CC /* Launch */,
-				9921952B2AE7F35500FAB0CC /* HeroDetail */,
+				9921951D2AE7F35500FAB0CC /* Splash */,
 				992195312AE7F35500FAB0CC /* Login */,
+				992195212AE7F35500FAB0CC /* Heroes */,
+				9921952B2AE7F35500FAB0CC /* HeroDetail */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -257,10 +254,10 @@
 		992195212AE7F35500FAB0CC /* Heroes */ = {
 			isa = PBXGroup;
 			children = (
-				992195222AE7F35500FAB0CC /* Heroes.storyboard */,
 				992195232AE7F35500FAB0CC /* Cells */,
 				992195262AE7F35500FAB0CC /* HeroesViewController.swift */,
 				992195272AE7F35500FAB0CC /* HeroesViewModel.swift */,
+				992195222AE7F35500FAB0CC /* Heroes.storyboard */,
 			);
 			path = Heroes;
 			sourceTree = "<group>";
@@ -268,8 +265,8 @@
 		992195232AE7F35500FAB0CC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				992195242AE7F35500FAB0CC /* HeroCellView.xib */,
 				992195252AE7F35500FAB0CC /* HeroCellView.swift */,
+				992195242AE7F35500FAB0CC /* HeroCellView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -286,8 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				9921952C2AE7F35500FAB0CC /* MapAnnotations */,
-				9921952E2AE7F35500FAB0CC /* HeroDetailViewModel.swift */,
 				9921952F2AE7F35500FAB0CC /* HeroDetailViewController.swift */,
+				9921952E2AE7F35500FAB0CC /* HeroDetailViewModel.swift */,
 				992195302AE7F35500FAB0CC /* HeroDetail.storyboard */,
 			);
 			path = HeroDetail;
@@ -304,9 +301,9 @@
 		992195312AE7F35500FAB0CC /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				992195352AE7F35500FAB0CC /* LoginViewController.swift */,
 				992195322AE7F35500FAB0CC /* LoginViewModel.swift */,
 				992195332AE7F35500FAB0CC /* Login.storyboard */,
-				992195352AE7F35500FAB0CC /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -467,7 +464,6 @@
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
 				9921953D2AE7F35500FAB0CC /* HeroesViewModel.swift in Sources */,
 				9921953C2AE7F35500FAB0CC /* HeroesViewController.swift in Sources */,
-				992194DB2AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */,
 				992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */,
 				992195412AE7F35500FAB0CC /* HeroDetailViewController.swift in Sources */,
 				992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */,
@@ -849,19 +845,6 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		992194D92AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				992194DA2AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodel */,
-			);
-			currentVersion = 992194DA2AE7EEEC00FAB0CC /* iOSAvanzado.xcdatamodel */;
-			path = iOSAvanzado.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 992194C52AE7EEEC00FAB0CC /* Project object */;
 }

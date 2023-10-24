@@ -1,10 +1,3 @@
-//
-//  HeroDetailViewController.swift
-//  DragonBall
-//
-//  Created by David Jardon on 19/10/23.
-//
-
 import UIKit
 import MapKit
 import Kingfisher
@@ -21,11 +14,16 @@ enum HeroDetailViewState {
 }
 
 class HeroDetailViewController: UIViewController {
+    // MARK: - Outlets and actions
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var heroDescription: UITextView!
 
+    @IBAction func onBackPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     var viewModel: HeroDetailViewControllerDelegate?
 
     override func viewDidLoad() {

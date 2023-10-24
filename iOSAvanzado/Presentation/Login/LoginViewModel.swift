@@ -1,18 +1,12 @@
-//
-//  LoginViewModel.swift
-//  DragonBall
-//
-//  Created by David Jardon on 10/10/23.
-//
 
 import Foundation
 
 class LoginViewModel: LoginViewControllerDelegate {
-    // MARK: - Dependencies -
+    // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
 
-    // MARK: - Properties -
+    // MARK: - Properties
     var viewState: ((LoginViewState) -> Void)?
     var heroesViewModel: HeroesViewControllerDelegate {
         HeroesViewModel(
@@ -22,11 +16,8 @@ class LoginViewModel: LoginViewControllerDelegate {
     }
 
 
-    // MARK: - Initializers -
-    init(
-        apiProvider: ApiProviderProtocol,
-        secureDataProvider: SecureDataProviderProtocol
-    ) {
+    // MARK: - Initializers
+    init(apiProvider: ApiProviderProtocol, secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
 
@@ -42,7 +33,7 @@ class LoginViewModel: LoginViewControllerDelegate {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Public functions -
+    // MARK: - Login button pressed
     func onLoginPressed(email: String?, password: String?) {
         viewState?(.loading(true))
 
@@ -52,34 +43,18 @@ class LoginViewModel: LoginViewControllerDelegate {
                 self.viewState?(.showErrorEmail("Indique un email válido"))
                 return
             }
-
+            
             guard self.isValid(password: password) else {
                 self.viewState?(.loading(false))
-                self.viewState?(.showErrorPassword("Indique una password válida"))
+                self.viewState?(.showErrorPassword("Indique una contraseña válida"))
                 return
             }
-
-            self.doLoginWith(
-                email: email ?? "",
-                password: password ?? ""
-            )
+            
+            self.doLoginWith(email: email ?? "", password: password ?? "")
         }
     }
 
-    @objc func onLoginResponse(_ notification: Notification) {
-        defer { viewState?(.loading(false)) }
-
-        // Parsear resultado que vendrá en notification.userInfo
-        guard let token = notification.userInfo?[NotificationCenter.tokenKey] as? String,
-              !token.isEmpty else {
-            return
-        }
-
-        secureDataProvider.save(token: token)
-        viewState?(.navigateToNext)
-    }
-
-    // MARK: - Private functions -
+    // MARK: - Private functions
     private func isValid(email: String?) -> Bool {
         email?.isEmpty == false && (email?.contains("@") ?? false)
     }
@@ -89,7 +64,19 @@ class LoginViewModel: LoginViewControllerDelegate {
     }
 
     private func doLoginWith(email: String, password: String) {
-        apiProvider.login(for: email,
-                          with: password)
+        apiProvider.login(for: email, with: password)
+    }
+    
+    // MARK: - Notification function
+    @objc func onLoginResponse(_ notification: Notification) {
+        defer { viewState?(.loading(false)) }
+
+        guard let token = notification.userInfo?[NotificationCenter.tokenKey] as? String,
+              !token.isEmpty else {
+            return
+        }
+
+        secureDataProvider.save(token: token)
+        viewState?(.navigateToNext)
     }
 }

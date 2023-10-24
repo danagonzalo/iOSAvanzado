@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +13,7 @@
         <!--Hero Detail View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="HeroDetailViewController" id="Y6W-OH-hqX" customClass="HeroDetailViewController" customModule="DragonBall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeroDetailViewController" id="Y6W-OH-hqX" customClass="HeroDetailViewController" customModule="iOSAvanzado" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,6 +49,23 @@
                                 <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihA-09-puI">
+                                <rect key="frame" x="15.999999999999996" y="59" width="54.666666666666657" height="22"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Atrás">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="chevron.left" catalog="system" symbolScale="medium" renderingMode="hierarchical-single">
+                                        <hierarchicalColors>
+                                            <color systemColor="labelColor"/>
+                                            <color systemColor="secondaryLabelColor"/>
+                                            <color systemColor="tertiaryLabelColor"/>
+                                        </hierarchicalColors>
+                                    </imageReference>
+                                </state>
+                                <connections>
+                                    <action selector="onBackPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VGB-gk-yWV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,8 +75,10 @@
                             <constraint firstItem="YOB-T7-gSQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="DCF-DQ-n9m"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="t9c-Sl-otR" secondAttribute="trailing" constant="16" id="Kkv-f2-c55"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="t9c-Sl-otR" secondAttribute="bottom" constant="8" id="Otq-UG-XWD"/>
+                            <constraint firstItem="ihA-09-puI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Qpo-Cc-4wB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Qig-dx-cxf" secondAttribute="trailing" constant="16" id="SV7-4u-MDo"/>
                             <constraint firstItem="NYi-Vl-Cjf" firstAttribute="top" secondItem="YOB-T7-gSQ" secondAttribute="bottom" constant="20" id="cld-D9-Wb6"/>
+                            <constraint firstItem="ihA-09-puI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="dmn-4P-cYr"/>
                             <constraint firstItem="t9c-Sl-otR" firstAttribute="top" secondItem="NYi-Vl-Cjf" secondAttribute="bottom" constant="20" id="jTS-wS-HyP"/>
                             <constraint firstItem="t9c-Sl-otR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="nu4-QY-iAm"/>
                             <constraint firstItem="YOB-T7-gSQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="rYF-fh-TGK"/>
@@ -79,14 +99,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

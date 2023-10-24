@@ -1,20 +1,13 @@
-//
-//  LoginViewController.swift
-//  DragonBall
-//
-//  Created by David Jardon on 10/10/23.
-//
-
 import UIKit
 
-// MARK: - View Protocol -
+// MARK: - View Protocol
 protocol LoginViewControllerDelegate {
     var viewState: ((LoginViewState) -> Void)? { get set }
     var heroesViewModel: HeroesViewControllerDelegate { get }
     func onLoginPressed(email: String?, password: String?)
 }
 
-// MARK: - View State -
+// MARK: - View State
 enum LoginViewState {
     case loading(_ isLoading: Bool)
     case showErrorEmail(_ error: String?)
@@ -23,24 +16,18 @@ enum LoginViewState {
 }
 
 class LoginViewController: UIViewController {
-    // MARK: - IBOutlet -
+    // MARK: - IBOutlets and IBActions
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailFieldError: UILabel!
     @IBOutlet weak var passwordFieldError: UILabel!
     @IBOutlet weak var loadingView: UIView!
 
-    // MARK: - IBAction -
     @IBAction func onLoginPressed() {
-        // Obtener el email y password introducidos por el usuario
-        // y enviarlos al servicio del API de Login
-        viewModel?.onLoginPressed(
-            email: emailField.text,
-            password: passwordField.text
-        )
+        viewModel?.onLoginPressed(email: emailField.text, password: passwordField.text)
     }
 
-    // MARK: - Public Properties -
+    // MARK: - Properties
     var viewModel: LoginViewControllerDelegate?
 
     private enum FieldType: Int {
@@ -48,7 +35,7 @@ class LoginViewController: UIViewController {
         case password
     }
 
-    // MARK: - Lifecycle -
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
@@ -64,7 +51,7 @@ class LoginViewController: UIViewController {
         heroesViewController.viewModel = viewModel?.heroesViewModel
     }
 
-    // MARK: - Private functions -
+    // MARK: - Private functions
     private func initViews() {
         emailField.delegate = self
         emailField.tag = FieldType.email.rawValue
@@ -72,10 +59,7 @@ class LoginViewController: UIViewController {
         passwordField.tag = FieldType.password.rawValue
 
         view.addGestureRecognizer(
-            UITapGestureRecognizer(
-                target: self,
-                action: #selector(dismissKeyboard)
-            )
+            UITapGestureRecognizer(target: self,action: #selector(dismissKeyboard))
         )
     }
 
@@ -100,14 +84,14 @@ class LoginViewController: UIViewController {
                         self?.passwordFieldError.isHidden = (error == nil || error?.isEmpty == true)
 
                     case .navigateToNext:
-                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES",
-                                           sender: nil)
+                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
                 }
             }
         }
     }
 }
 
+// MARK: - Extension
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch FieldType(rawValue: textField.tag) {
