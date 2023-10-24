@@ -24,11 +24,11 @@
 		992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951E2AE7F35500FAB0CC /* SplashViewController.swift */; };
 		992195372AE7F35500FAB0CC /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951F2AE7F35500FAB0CC /* SplashViewModel.swift */; };
 		992195382AE7F35500FAB0CC /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195202AE7F35500FAB0CC /* Splash.storyboard */; };
-		992195392AE7F35500FAB0CC /* Heroes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195222AE7F35500FAB0CC /* Heroes.storyboard */; };
+		992195392AE7F35500FAB0CC /* HeroesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195222AE7F35500FAB0CC /* HeroesList.storyboard */; };
 		9921953A2AE7F35500FAB0CC /* HeroCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992195242AE7F35500FAB0CC /* HeroCellView.xib */; };
 		9921953B2AE7F35500FAB0CC /* HeroCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195252AE7F35500FAB0CC /* HeroCellView.swift */; };
-		9921953C2AE7F35500FAB0CC /* HeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195262AE7F35500FAB0CC /* HeroesViewController.swift */; };
-		9921953D2AE7F35500FAB0CC /* HeroesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195272AE7F35500FAB0CC /* HeroesViewModel.swift */; };
+		9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195262AE7F35500FAB0CC /* HeroesListViewController.swift */; };
+		9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195272AE7F35500FAB0CC /* HeroesListViewModel.swift */; };
 		9921953E2AE7F35500FAB0CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195292AE7F35500FAB0CC /* LaunchScreen.storyboard */; };
 		9921953F2AE7F35500FAB0CC /* HeroAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921952D2AE7F35500FAB0CC /* HeroAnnotation.swift */; };
 		992195402AE7F35500FAB0CC /* HeroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921952E2AE7F35500FAB0CC /* HeroDetailViewModel.swift */; };
@@ -37,6 +37,7 @@
 		992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195322AE7F35500FAB0CC /* LoginViewModel.swift */; };
 		992195442AE7F35500FAB0CC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195332AE7F35500FAB0CC /* Login.storyboard */; };
 		992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195352AE7F35500FAB0CC /* LoginViewController.swift */; };
+		9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195492AE81E0800FAB0CC /* LocationDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,11 +77,11 @@
 		9921951E2AE7F35500FAB0CC /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		9921951F2AE7F35500FAB0CC /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		992195202AE7F35500FAB0CC /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
-		992195222AE7F35500FAB0CC /* Heroes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Heroes.storyboard; sourceTree = "<group>"; };
+		992195222AE7F35500FAB0CC /* HeroesList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HeroesList.storyboard; sourceTree = "<group>"; };
 		992195242AE7F35500FAB0CC /* HeroCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeroCellView.xib; sourceTree = "<group>"; };
 		992195252AE7F35500FAB0CC /* HeroCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroCellView.swift; sourceTree = "<group>"; };
-		992195262AE7F35500FAB0CC /* HeroesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesViewController.swift; sourceTree = "<group>"; };
-		992195272AE7F35500FAB0CC /* HeroesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesViewModel.swift; sourceTree = "<group>"; };
+		992195262AE7F35500FAB0CC /* HeroesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesListViewController.swift; sourceTree = "<group>"; };
+		992195272AE7F35500FAB0CC /* HeroesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesListViewModel.swift; sourceTree = "<group>"; };
 		9921952A2AE7F35500FAB0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9921952D2AE7F35500FAB0CC /* HeroAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAnnotation.swift; sourceTree = "<group>"; };
 		9921952E2AE7F35500FAB0CC /* HeroDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModel.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		992195322AE7F35500FAB0CC /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		992195342AE7F35500FAB0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		992195352AE7F35500FAB0CC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		992195492AE81E0800FAB0CC /* LocationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				992195142AE7F2C800FAB0CC /* HeroDAO.swift */,
+				992195492AE81E0800FAB0CC /* LocationDAO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,7 +238,7 @@
 				992195282AE7F35500FAB0CC /* Launch */,
 				9921951D2AE7F35500FAB0CC /* Splash */,
 				992195312AE7F35500FAB0CC /* Login */,
-				992195212AE7F35500FAB0CC /* Heroes */,
+				992195212AE7F35500FAB0CC /* HeroesList */,
 				9921952B2AE7F35500FAB0CC /* HeroDetail */,
 			);
 			path = Presentation;
@@ -251,15 +254,15 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		992195212AE7F35500FAB0CC /* Heroes */ = {
+		992195212AE7F35500FAB0CC /* HeroesList */ = {
 			isa = PBXGroup;
 			children = (
 				992195232AE7F35500FAB0CC /* Cells */,
-				992195262AE7F35500FAB0CC /* HeroesViewController.swift */,
-				992195272AE7F35500FAB0CC /* HeroesViewModel.swift */,
-				992195222AE7F35500FAB0CC /* Heroes.storyboard */,
+				992195262AE7F35500FAB0CC /* HeroesListViewController.swift */,
+				992195272AE7F35500FAB0CC /* HeroesListViewModel.swift */,
+				992195222AE7F35500FAB0CC /* HeroesList.storyboard */,
 			);
-			path = Heroes;
+			path = HeroesList;
 			sourceTree = "<group>";
 		};
 		992195232AE7F35500FAB0CC /* Cells */ = {
@@ -425,7 +428,7 @@
 				992194DD2AE7EEEE00FAB0CC /* Assets.xcassets in Resources */,
 				992195422AE7F35500FAB0CC /* HeroDetail.storyboard in Resources */,
 				9921953E2AE7F35500FAB0CC /* LaunchScreen.storyboard in Resources */,
-				992195392AE7F35500FAB0CC /* Heroes.storyboard in Resources */,
+				992195392AE7F35500FAB0CC /* HeroesList.storyboard in Resources */,
 				992195382AE7F35500FAB0CC /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,10 +465,11 @@
 				9921953F2AE7F35500FAB0CC /* HeroAnnotation.swift in Sources */,
 				9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */,
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
-				9921953D2AE7F35500FAB0CC /* HeroesViewModel.swift in Sources */,
-				9921953C2AE7F35500FAB0CC /* HeroesViewController.swift in Sources */,
+				9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */,
+				9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */,
 				992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */,
 				992195412AE7F35500FAB0CC /* HeroDetailViewController.swift in Sources */,
+				9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */,
 				992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */,
 				992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */,
 				992195402AE7F35500FAB0CC /* HeroDetailViewModel.swift in Sources */,

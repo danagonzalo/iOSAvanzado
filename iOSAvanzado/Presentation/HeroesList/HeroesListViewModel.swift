@@ -1,6 +1,6 @@
 import Foundation
 
-class HeroesViewModel: HeroesViewControllerDelegate {
+class HeroesListViewModel: HeroesListViewControllerDelegate {
     // MARK: - Dependencies -
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol

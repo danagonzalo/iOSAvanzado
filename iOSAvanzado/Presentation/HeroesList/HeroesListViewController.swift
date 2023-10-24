@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - View Protocol -
-protocol HeroesViewControllerDelegate {
+protocol HeroesListViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
     var heroesCount: Int { get }
 
@@ -17,13 +17,13 @@ enum HeroesViewState {
 }
 
 // MARK: - Class -
-class HeroesViewController: UIViewController {
-    // MARK: - IBOutlet -
+class HeroesListViewController: UIViewController {
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
-
+    
     // MARK: - Public Properties -
-    var viewModel: HeroesViewControllerDelegate?
+    var viewModel: HeroesListViewControllerDelegate?
 
     // MARK: - Lifecycle -
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class HeroesViewController: UIViewController {
     }
 }
 
-extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
+extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.heroesCount ?? 0
     }

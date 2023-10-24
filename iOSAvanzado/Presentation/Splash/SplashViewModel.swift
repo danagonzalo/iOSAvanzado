@@ -3,6 +3,7 @@ import Foundation
 
 class SplashViewModel: SplashViewControllerDelegate {
     
+    
     // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
@@ -16,8 +17,8 @@ class SplashViewModel: SplashViewControllerDelegate {
         )
     }()
 
-    lazy var heroesViewModel: HeroesViewControllerDelegate = {
-        HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+    lazy var heroesListViewModel: HeroesListViewControllerDelegate = {
+        HeroesListViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
     }()
 
     private var isLogged: Bool {

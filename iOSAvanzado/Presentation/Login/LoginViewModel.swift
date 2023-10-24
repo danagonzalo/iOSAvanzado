@@ -8,8 +8,8 @@ class LoginViewModel: LoginViewControllerDelegate {
 
     // MARK: - Properties
     var viewState: ((LoginViewState) -> Void)?
-    var heroesViewModel: HeroesViewControllerDelegate {
-        HeroesViewModel(
+    var heroesViewModel: HeroesListViewControllerDelegate {
+        HeroesListViewModel(
             apiProvider: apiProvider,
             secureDataProvider: secureDataProvider
         )

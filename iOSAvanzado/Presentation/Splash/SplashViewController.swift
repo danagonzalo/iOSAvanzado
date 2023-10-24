@@ -4,7 +4,7 @@ import UIKit
 protocol SplashViewControllerDelegate {
     var viewState: ((SplashViewState) -> Void)? { get set }
     var loginViewModel: LoginViewControllerDelegate { get }
-    var heroesViewModel: HeroesViewControllerDelegate { get }
+    var heroesListViewModel: HeroesListViewControllerDelegate { get }
 
     func onViewAppear()
 }
@@ -40,8 +40,8 @@ class SplashViewController: UIViewController {
                 loginViewController.viewModel = viewModel?.loginViewModel
 
             case "SPLASH_TO_HEROES":
-                guard let heroesViewController = segue.destination as? HeroesViewController else { return }
-                heroesViewController.viewModel = viewModel?.heroesViewModel
+                guard let heroesViewController = segue.destination as? HeroesListViewController else { return }
+                heroesViewController.viewModel = viewModel?.heroesListViewModel
 
             default:
                 break

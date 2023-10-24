@@ -113,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
         </scene>
-        <!--Heroes-->
+        <!--HeroesList-->
         <scene sceneID="IgG-o1-goU">
             <objects>
-                <viewControllerPlaceholder storyboardName="Heroes" id="mxl-X8-j8r" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="HeroesList" id="mxl-X8-j8r" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="HVr-kr-H41"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVV-I6-pCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
