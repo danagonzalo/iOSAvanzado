@@ -7,9 +7,9 @@ class SplashViewModel: SplashViewControllerDelegate {
     // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
-
     
     var viewState: ((SplashViewState) -> Void)?
+    
     lazy var loginViewModel: LoginViewControllerDelegate = {
         LoginViewModel(
             apiProvider: apiProvider,
@@ -18,19 +18,20 @@ class SplashViewModel: SplashViewControllerDelegate {
     }()
 
     lazy var heroesListViewModel: HeroesListViewControllerDelegate = {
-        HeroesListViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+        HeroesListViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider, loginViewModel: loginViewModel)
     }()
 
     private var isLogged: Bool {
         secureDataProvider.getToken()?.isEmpty == false
     }
 
-
+    // MARK: - Initializers
     init(apiProvider: ApiProviderProtocol, secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
     }
 
+    // MARK: - Lifecycle
     func onViewAppear() {
         viewState?(.loading(true))
 

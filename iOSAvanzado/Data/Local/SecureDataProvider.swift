@@ -4,6 +4,7 @@ import KeychainSwift
 protocol SecureDataProviderProtocol {
     func save(token: String)
     func getToken() -> String?
+    func remove(token: String)
 }
 
 final class SecureDataProvider: SecureDataProviderProtocol {
@@ -19,5 +20,9 @@ final class SecureDataProvider: SecureDataProviderProtocol {
 
     func getToken() -> String? {
         keychain.get(Key.token)
+    }
+    
+    func remove(token: String) {
+        keychain.delete(Key.token)
     }
 }

@@ -9,6 +9,7 @@ class HeroDetailViewModel: HeroDetailViewControllerDelegate {
     private var hero: Hero
     private var heroLocations: HeroLocations = []
 
+    // MARK: - Initializers
     init(hero: Hero,
          apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol) {
@@ -22,17 +23,12 @@ class HeroDetailViewModel: HeroDetailViewControllerDelegate {
 
         DispatchQueue.global().async {
             defer { self.viewState?(.loading(false)) }
-            guard let token = self.secureDataProvider.getToken() else {
-                return
-            }
+            
+            guard let token = self.secureDataProvider.getToken() else { return }
 
-            self.apiProvider.getLocations(
-                by: self.hero.id,
-                token: token
-            ) { [weak self] heroLocations in
+            self.apiProvider.getLocations(for: self.hero.id, token: token) { [weak self] heroLocations in
                 self?.heroLocations = heroLocations
-                self?.viewState?(.update(hero: self?.hero,
-                                         locations: heroLocations))
+                self?.viewState?(.update(hero: self?.hero, locations: heroLocations))
             }
         }
     }

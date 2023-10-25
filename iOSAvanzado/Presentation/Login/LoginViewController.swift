@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "LOGIN_TO_HEROES",
+        guard segue.identifier == "LOGIN_TO_HEROES_LIST",
               let heroesViewController = segue.destination as? HeroesListViewController else {
             return
         }
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
                         self?.passwordFieldError.isHidden = (error == nil || error?.isEmpty == true)
 
                     case .navigateToNext:
-                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
+                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES_LIST", sender: nil)
                 }
             }
         }

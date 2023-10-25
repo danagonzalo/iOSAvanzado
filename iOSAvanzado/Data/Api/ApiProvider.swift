@@ -3,7 +3,7 @@ import Foundation
 protocol ApiProviderProtocol {
     func login(for user: String, with password: String)
     func getHeroes(by name: String?, token: String, completion: ((Heroes) -> Void)?)
-    func getLocations(by heroId: String?, token: String, completion: ((HeroLocations) -> Void)?)
+    func getLocations(for heroId: String?, token: String, completion: ((HeroLocations) -> Void)?)
 }
 
 class ApiProvider: ApiProviderProtocol {
@@ -94,14 +94,13 @@ class ApiProvider: ApiProviderProtocol {
                 completion?([])
                 return
             }
-
-            print("API RESPONSE - GET HEROES: \(heroes)")
+            
             completion?(heroes)
         }.resume()
     }
 
     // MARK: - Get locations for hero
-    func getLocations(by heroId: String?, token: String, completion: ((HeroLocations) -> Void)?) {
+    func getLocations(for heroId: String?, token: String, completion: ((HeroLocations) -> Void)?) {
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroLocations)") else {
             // TODO: Enviar notificación indicando el error
             return
@@ -136,7 +135,6 @@ class ApiProvider: ApiProviderProtocol {
                 return
             }
 
-            print("API RESPONSE - GET HERO LOCATIONS: \(heroLocations)")
             completion?(heroLocations)
         }.resume()
     }

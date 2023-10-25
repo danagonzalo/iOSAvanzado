@@ -11,7 +11,8 @@ class LoginViewModel: LoginViewControllerDelegate {
     var heroesViewModel: HeroesListViewControllerDelegate {
         HeroesListViewModel(
             apiProvider: apiProvider,
-            secureDataProvider: secureDataProvider
+            secureDataProvider: secureDataProvider,
+            loginViewModel: self
         )
     }
 

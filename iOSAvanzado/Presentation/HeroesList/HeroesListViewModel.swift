@@ -1,11 +1,14 @@
 import Foundation
 
 class HeroesListViewModel: HeroesListViewControllerDelegate {
-    // MARK: - Dependencies -
+    
+    // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
 
-    // MARK: - Properties -
+
+    // MARK: - Properties
+    var loginVieModel: LoginViewControllerDelegate
     var viewState: ((HeroesViewState) -> Void)?
     var heroesCount: Int {
         heroes.count
@@ -14,14 +17,16 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     private var heroes: Heroes = []
 
 
-    // MARK: - Initializers -
+    // MARK: - Initializers
     init(apiProvider: ApiProviderProtocol,
-         secureDataProvider: SecureDataProviderProtocol) {
+         secureDataProvider: SecureDataProviderProtocol,
+         loginViewModel: LoginViewControllerDelegate) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
+        self.loginVieModel = loginViewModel
     }
 
-    // MARK: - Public functions -
+    // MARK: - Public functions
     func onViewAppear() {
         viewState?(.loading(true))
 
@@ -29,8 +34,7 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
             defer { self.viewState?(.loading(false)) }
             guard let token = self.secureDataProvider.getToken() else { return }
 
-            self.apiProvider.getHeroes(by: nil,
-                                       token: token) { heroes in
+            self.apiProvider.getHeroes(by: nil, token: token) { heroes in
                 self.heroes = heroes
                 self.viewState?(.updateData)
             }

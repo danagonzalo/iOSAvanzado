@@ -106,7 +106,7 @@
                         <outlet property="loadingView" destination="uId-9a-KLc" id="ELR-Lo-Ifa"/>
                         <outlet property="passwordField" destination="SZT-ex-8ux" id="MAA-WI-EJd"/>
                         <outlet property="passwordFieldError" destination="BJG-kH-0k4" id="OxE-XR-JgP"/>
-                        <segue destination="mxl-X8-j8r" kind="show" identifier="LOGIN_TO_HEROES" id="ZSm-Le-3Cd"/>
+                        <segue destination="mxl-X8-j8r" kind="show" identifier="LOGIN_TO_HEROES_LIST" id="ZSm-Le-3Cd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

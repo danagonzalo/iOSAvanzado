@@ -17,9 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kXB-Jc-jdO">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="93.333333333333314" width="393" height="724.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsF-VZ-nV2">
+                                <rect key="frame" x="16" y="59" width="126" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cerrar sesión"/>
+                                <connections>
+                                    <segue destination="5pk-qQ-9kt" kind="show" identifier="HEROES_LIST_TO_LOGIN" animates="NO" id="dPH-No-MJ7"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAu-nh-bCZ" userLabel="Loading View">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
@@ -41,9 +49,11 @@
                             <constraint firstAttribute="bottom" secondItem="WAu-nh-bCZ" secondAttribute="bottom" id="BMM-RH-9FU"/>
                             <constraint firstItem="kXB-Jc-jdO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="CVU-92-rSg"/>
                             <constraint firstItem="WAu-nh-bCZ" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="SYN-cC-LC8"/>
-                            <constraint firstItem="kXB-Jc-jdO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Wk8-c9-lBg"/>
+                            <constraint firstItem="kXB-Jc-jdO" firstAttribute="top" secondItem="gsF-VZ-nV2" secondAttribute="bottom" id="Wk8-c9-lBg"/>
                             <constraint firstItem="kXB-Jc-jdO" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="e0T-7d-eHj"/>
                             <constraint firstItem="WAu-nh-bCZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="j87-8X-dTH"/>
+                            <constraint firstItem="gsF-VZ-nV2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="lMa-Ud-kXj"/>
+                            <constraint firstItem="gsF-VZ-nV2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vGk-Gu-XT2"/>
                             <constraint firstItem="WAu-nh-bCZ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="yEU-lz-VFc"/>
                         </constraints>
                     </view>
@@ -57,6 +67,16 @@
             </objects>
             <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
         </scene>
+        <!--Login-->
+        <scene sceneID="0Jd-hb-z7A">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="5pk-qQ-9kt" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1nd-y9-a66"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxw-J1-iaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="862" y="-96"/>
+        </scene>
         <!--HeroDetail-->
         <scene sceneID="8GL-pr-FDO">
             <objects>
@@ -65,7 +85,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s1W-xL-m8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811" y="-1"/>
+            <point key="canvasLocation" x="886" y="92"/>
         </scene>
     </scenes>
     <resources>
