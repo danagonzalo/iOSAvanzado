@@ -18,7 +18,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     }()
 
     lazy var heroesListViewModel: HeroesListViewControllerDelegate = {
-        HeroesListViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider, loginViewModel: loginViewModel)
+        HeroesListViewModel(apiProvider: apiProvider, loginViewModel: loginViewModel)
     }()
 
     private var isLogged: Bool {

@@ -40,11 +40,7 @@ class HeroCellView: UITableViewCell {
         selectionStyle = .none
     }
 
-    func updateView(
-        name: String? = nil,
-        photo: String? = nil,
-        description: String? = nil
-    ) {
+    func updateView(name: String? = nil, photo: String? = nil, description: String? = nil) {
         self.name.text = name
         self.heroDescription.text = description
         self.photo.kf.setImage(with: URL(string: photo ?? ""))

@@ -1,10 +1,12 @@
 import UIKit
+import CoreData
 
 // MARK: - View Protocol
 protocol HeroesListViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
     var heroesCount: Int { get }
     var loginVieModel: LoginViewControllerDelegate { get set }
+    var heroesList: Heroes { get }
     
     func onViewAppear()
     func heroBy(index: Int) -> Hero?
@@ -30,7 +32,9 @@ class HeroesListViewController: UIViewController {
         performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
     
+    // Referencia al managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var viewModel: HeroesListViewControllerDelegate?
     
     // MARK: - Lifecycle
@@ -60,7 +64,6 @@ class HeroesListViewController: UIViewController {
             
             loginViewController.viewModel = loginViewModel
             
-            
         default:
             break
         }
@@ -85,17 +88,44 @@ class HeroesListViewController: UIViewController {
                         self?.loadingView.isHidden = !isLoading
                         
                     case .updateData:
+                        self?.fetchHeroes()
                         self?.tableView.reloadData()
                     
                     case .logOut:
-                    self?.viewModel?.onLogoutPressed()
+                        self?.viewModel?.onLogoutPressed()
                 }
             }
         }
     }
 }
 
-// MARK: - Extensions
+
+// MARK: - Extensions: CoreData
+extension HeroesListViewController {
+    
+    func fetchHeroes() {
+        print("Fetching heroes count: \(viewModel!.heroesList.count)")
+        for hero in viewModel!.heroesList {
+            print("-- Hero found: \(String(describing: hero.name))")
+            let newHero = HeroDAO(context: self.context)
+            
+            newHero.id = hero.id
+            newHero.name = hero.name
+            newHero.longDescription = hero.description
+            newHero.photo = hero.photo
+            newHero.favorite = hero.isFavorite ?? false
+            
+            print("NEWHERO: \(String(describing: newHero.name))")
+        }
+        
+        try? self.context.save()
+        tableView.reloadData()
+    }
+}
+    
+
+
+// MARK: - Extensions: Delegate, DataSource
 extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.heroesCount ?? 0
@@ -112,11 +142,7 @@ extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if let hero = viewModel?.heroBy(index: indexPath.row) {
-            cell.updateView(
-                name: hero.name,
-                photo: hero.photo,
-                description: hero.description
-            )
+            cell.updateView(name: hero.name, photo: hero.photo, description: hero.description)
         }
 
         return cell

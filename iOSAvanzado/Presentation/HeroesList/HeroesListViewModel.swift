@@ -1,25 +1,22 @@
 import Foundation
 
 class HeroesListViewModel: HeroesListViewControllerDelegate {
-    
+
     // MARK: - Dependencies
     private let apiProvider: ApiProviderProtocol
-    private let secureDataProvider: SecureDataProviderProtocol
 
 
     // MARK: - Properties
     var loginVieModel: LoginViewControllerDelegate
     var viewState: ((HeroesViewState) -> Void)?
-    var heroesCount: Int { heroes.count }
+    var heroesCount: Int { heroesList.count }
 
-    private var heroes: Heroes = []
+    var heroesList: Heroes = []
 
     // MARK: - Initializers
     init(apiProvider: ApiProviderProtocol,
-         secureDataProvider: SecureDataProviderProtocol,
          loginViewModel: LoginViewControllerDelegate) {
         self.apiProvider = apiProvider
-        self.secureDataProvider = secureDataProvider
         self.loginVieModel = loginViewModel
     }
 
@@ -29,12 +26,10 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
 
         DispatchQueue.global().async {
             defer { self.viewState?(.loading(false)) }
-            guard let token = self.secureDataProvider.getToken() else { return }
+            guard let token = SecureDataProvider.shared.getToken() else { return }
 
             self.apiProvider.getHeroes(by: nil, token: token) { heroes in
-                self.heroes = heroes
-                
-                
+                self.heroesList = heroes
                 self.viewState?(.updateData)
             }
         }
@@ -42,7 +37,7 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
 
     func heroBy(index: Int) -> Hero? {
         if index >= 0 && index < heroesCount {
-            heroes[index]
+            heroesList[index]
         } else {
             nil
         }
@@ -54,13 +49,12 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
         return HeroDetailViewModel(
             hero: selectedHero,
             apiProvider: apiProvider,
-            secureDataProvider: secureDataProvider
+            secureDataProvider: SecureDataProvider.shared
         )
     }
     
     func onLogoutPressed() {
         // Borramos el token al cerrar sesión
-        secureDataProvider.remove(token: secureDataProvider.getToken() ?? "")
-        // TODO: Borrar datos almacenados en CoreData
+        SecureDataProvider.shared.remove(token: SecureDataProvider.shared.getToken() ?? "")
     }
 }

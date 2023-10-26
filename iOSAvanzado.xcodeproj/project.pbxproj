@@ -18,7 +18,6 @@
 		9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921950D2AE7F23E00FAB0CC /* ApiProvider.swift */; };
 		992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */; };
 		992195122AE7F28E00FAB0CC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195112AE7F28E00FAB0CC /* CoreDataStack.swift */; };
-		992195152AE7F2C800FAB0CC /* HeroDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195142AE7F2C800FAB0CC /* HeroDAO.swift */; };
 		992195192AE7F30D00FAB0CC /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195182AE7F30D00FAB0CC /* Hero.swift */; };
 		9921951B2AE7F32200FAB0CC /* HeroLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951A2AE7F32200FAB0CC /* HeroLocation.swift */; };
 		992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951E2AE7F35500FAB0CC /* SplashViewController.swift */; };
@@ -37,8 +36,11 @@
 		992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195322AE7F35500FAB0CC /* LoginViewModel.swift */; };
 		992195442AE7F35500FAB0CC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195332AE7F35500FAB0CC /* Login.storyboard */; };
 		992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195352AE7F35500FAB0CC /* LoginViewController.swift */; };
-		9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195492AE81E0800FAB0CC /* LocationDAO.swift */; };
 		9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */; };
+		992195562AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195522AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift */; };
+		992195572AEA960000FAB0CC /* HeroDAO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195532AEA960000FAB0CC /* HeroDAO+CoreDataProperties.swift */; };
+		992195582AEA960000FAB0CC /* LocationDAO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195542AEA960000FAB0CC /* LocationDAO+CoreDataClass.swift */; };
+		992195592AEA960000FAB0CC /* LocationDAO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195552AEA960000FAB0CC /* LocationDAO+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +74,6 @@
 		9921950D2AE7F23E00FAB0CC /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
 		9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
 		992195112AE7F28E00FAB0CC /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		992195142AE7F2C800FAB0CC /* HeroDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDAO.swift; sourceTree = "<group>"; };
 		992195182AE7F30D00FAB0CC /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		9921951A2AE7F32200FAB0CC /* HeroLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroLocation.swift; sourceTree = "<group>"; };
 		9921951E2AE7F35500FAB0CC /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -91,8 +92,11 @@
 		992195322AE7F35500FAB0CC /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		992195342AE7F35500FAB0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		992195352AE7F35500FAB0CC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		992195492AE81E0800FAB0CC /* LocationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
 		9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DragonBall.xcdatamodel; sourceTree = "<group>"; };
+		992195522AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroDAO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		992195532AEA960000FAB0CC /* HeroDAO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroDAO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		992195542AEA960000FAB0CC /* LocationDAO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDAO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		992195552AEA960000FAB0CC /* LocationDAO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDAO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,8 +216,8 @@
 		992195132AE7F2BD00FAB0CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				992195142AE7F2C800FAB0CC /* HeroDAO.swift */,
-				992195492AE81E0800FAB0CC /* LocationDAO.swift */,
+				9921955A2AEA962700FAB0CC /* HeroDAO */,
+				9921955B2AEA963200FAB0CC /* LocationDAO */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +316,24 @@
 				992195332AE7F35500FAB0CC /* Login.storyboard */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9921955A2AEA962700FAB0CC /* HeroDAO */ = {
+			isa = PBXGroup;
+			children = (
+				992195522AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift */,
+				992195532AEA960000FAB0CC /* HeroDAO+CoreDataProperties.swift */,
+			);
+			path = HeroDAO;
+			sourceTree = "<group>";
+		};
+		9921955B2AEA963200FAB0CC /* LocationDAO */ = {
+			isa = PBXGroup;
+			children = (
+				992195542AEA960000FAB0CC /* LocationDAO+CoreDataClass.swift */,
+				992195552AEA960000FAB0CC /* LocationDAO+CoreDataProperties.swift */,
+			);
+			path = LocationDAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,21 +480,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				992195122AE7F28E00FAB0CC /* CoreDataStack.swift in Sources */,
+				992195562AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift in Sources */,
 				9921951B2AE7F32200FAB0CC /* HeroLocation.swift in Sources */,
 				992195372AE7F35500FAB0CC /* SplashViewModel.swift in Sources */,
+				992195582AEA960000FAB0CC /* LocationDAO+CoreDataClass.swift in Sources */,
 				992195192AE7F30D00FAB0CC /* Hero.swift in Sources */,
 				9921953B2AE7F35500FAB0CC /* HeroCellView.swift in Sources */,
-				992195152AE7F2C800FAB0CC /* HeroDAO.swift in Sources */,
 				992194D12AE7EEEC00FAB0CC /* AppDelegate.swift in Sources */,
 				992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */,
 				9921953F2AE7F35500FAB0CC /* HeroAnnotation.swift in Sources */,
 				9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */,
+				992195592AEA960000FAB0CC /* LocationDAO+CoreDataProperties.swift in Sources */,
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
 				9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */,
+				992195572AEA960000FAB0CC /* HeroDAO+CoreDataProperties.swift in Sources */,
 				9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */,
 				992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */,
 				992195412AE7F35500FAB0CC /* HeroDetailViewController.swift in Sources */,
-				9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */,
 				992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */,
 				9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */,
 				992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */,

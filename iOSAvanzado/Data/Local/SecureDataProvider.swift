@@ -8,6 +8,7 @@ protocol SecureDataProviderProtocol {
 }
 
 final class SecureDataProvider: SecureDataProviderProtocol {
+    static let shared: SecureDataProvider = .init()
     private let keychain = KeychainSwift()
 
     private enum Key {
