@@ -16,7 +16,6 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
 
     private var heroes: Heroes = []
 
-
     // MARK: - Initializers
     init(apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol,
@@ -57,5 +56,10 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
             apiProvider: apiProvider,
             secureDataProvider: secureDataProvider
         )
+    }
+    
+    func onLogoutPressed() {
+        print("Token onLogOutPressed: \(String(describing: secureDataProvider.getToken()))")
+//        secureDataProvider.remove(token: secureDataProvider.getToken() ?? "")
     }
 }

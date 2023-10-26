@@ -9,12 +9,14 @@ protocol HeroesListViewControllerDelegate {
     func onViewAppear()
     func heroBy(index: Int) -> Hero?
     func heroDetailViewModel(index: Int) -> HeroDetailViewControllerDelegate?
+    func onLogoutPressed()
 }
 
 // MARK: - View State
 enum HeroesViewState {
     case loading(_ isLoading: Bool)
     case updateData
+    case logOut
 }
 
 // MARK: - Class
@@ -24,7 +26,8 @@ class HeroesListViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
     
     @IBAction func onLogOutPressed(segue: UIStoryboardSegue) {
-        self.performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
+        viewModel?.viewState?(.logOut)
+        performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
     
     var viewModel: HeroesListViewControllerDelegate?
@@ -39,20 +42,25 @@ class HeroesListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "HEROES_TO_HERO_DETAIL" :
+        case "HEROES_LIST_TO_HERO_DETAIL" :
             guard let index = sender as? Int,
                   let heroDetailViewController = segue.destination as? HeroDetailViewController,
                   let detailViewModel = viewModel?.heroDetailViewModel(index: index) else {
                 return
             }
+            
             heroDetailViewController.viewModel = detailViewModel
             
         case "HEROES_LIST_TO_LOGIN":
+            print("preparing for segue...")
             guard let loginViewController = segue.destination as? LoginViewController,
                   let loginViewModel = viewModel?.loginVieModel else {
                 return
             }
+            
             loginViewController.viewModel = loginViewModel
+            
+            
         default:
             break
         }
@@ -73,12 +81,14 @@ class HeroesListViewController: UIViewController {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
-                case .loading(let isLoading):
-                    self?.loadingView.isHidden = !isLoading
+                    case .loading(let isLoading):
+                        self?.loadingView.isHidden = !isLoading
+                        
+                    case .updateData:
+                        self?.tableView.reloadData()
                     
-                case .updateData:
-                    self?.tableView.reloadData()
-                    
+                    case .logOut:
+                    self?.viewModel?.onLogoutPressed()
                 }
             }
         }
@@ -113,6 +123,6 @@ extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "HEROES_TO_HERO_DETAIL", sender: indexPath.row)
+        performSegue(withIdentifier: "HEROES_LIST_TO_HERO_DETAIL", sender: indexPath.row)
     }
 }

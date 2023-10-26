@@ -25,7 +25,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cerrar sesión"/>
                                 <connections>
-                                    <segue destination="5pk-qQ-9kt" kind="show" identifier="HEROES_LIST_TO_LOGIN" animates="NO" id="dPH-No-MJ7"/>
+                                    <action selector="onLogoutPressedWithSegue:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="06u-N0-28D"/>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAu-nh-bCZ" userLabel="Loading View">
@@ -60,7 +60,8 @@
                     <connections>
                         <outlet property="loadingView" destination="WAu-nh-bCZ" id="sbP-Rq-hSb"/>
                         <outlet property="tableView" destination="kXB-Jc-jdO" id="4gc-gY-0O9"/>
-                        <segue destination="md1-to-Sr3" kind="show" identifier="HEROES_TO_HERO_DETAIL" id="z8v-g1-Cuv"/>
+                        <segue destination="md1-to-Sr3" kind="show" identifier="HEROES_LIST_TO_HERO_DETAIL" id="z8v-g1-Cuv"/>
+                        <segue destination="5pk-qQ-9kt" kind="show" identifier="HEROES_LIST_TO_LOGIN" id="O9v-PI-TZd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -33,6 +33,7 @@ class LoginViewModel: LoginViewControllerDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
 
     // MARK: - Login button pressed
     func onLoginPressed(email: String?, password: String?) {
