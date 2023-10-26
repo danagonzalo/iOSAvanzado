@@ -67,6 +67,7 @@ class LoginViewModel: LoginViewControllerDelegate {
 
     private func doLoginWith(email: String, password: String) {
         apiProvider.login(for: email, with: password)
+
     }
     
     // MARK: - Notification function

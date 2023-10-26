@@ -25,7 +25,7 @@ class HeroesListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
     
-    @IBAction func onLogOutPressed(segue: UIStoryboardSegue) {
+    @IBAction func onLogOutPressed() {
         viewModel?.viewState?(.logOut)
         performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
@@ -52,7 +52,6 @@ class HeroesListViewController: UIViewController {
             heroDetailViewController.viewModel = detailViewModel
             
         case "HEROES_LIST_TO_LOGIN":
-            print("preparing for segue...")
             guard let loginViewController = segue.destination as? LoginViewController,
                   let loginViewModel = viewModel?.loginVieModel else {
                 return

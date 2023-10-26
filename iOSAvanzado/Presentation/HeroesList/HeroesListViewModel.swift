@@ -10,9 +10,7 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     // MARK: - Properties
     var loginVieModel: LoginViewControllerDelegate
     var viewState: ((HeroesViewState) -> Void)?
-    var heroesCount: Int {
-        heroes.count
-    }
+    var heroesCount: Int { heroes.count }
 
     private var heroes: Heroes = []
 
@@ -59,7 +57,7 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     }
     
     func onLogoutPressed() {
-        print("Token onLogOutPressed: \(String(describing: secureDataProvider.getToken()))")
-//        secureDataProvider.remove(token: secureDataProvider.getToken() ?? "")
+        // Borramos el token al cerrar sesión
+        secureDataProvider.remove(token: secureDataProvider.getToken() ?? "")
     }
 }
