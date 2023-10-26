@@ -17,7 +17,6 @@
 		992195082AE7F1D200FAB0CC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 992195072AE7F1D200FAB0CC /* Kingfisher */; };
 		9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921950D2AE7F23E00FAB0CC /* ApiProvider.swift */; };
 		992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */; };
-		992195122AE7F28E00FAB0CC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195112AE7F28E00FAB0CC /* CoreDataStack.swift */; };
 		992195192AE7F30D00FAB0CC /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195182AE7F30D00FAB0CC /* Hero.swift */; };
 		9921951B2AE7F32200FAB0CC /* HeroLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951A2AE7F32200FAB0CC /* HeroLocation.swift */; };
 		992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9921951E2AE7F35500FAB0CC /* SplashViewController.swift */; };
@@ -73,7 +72,6 @@
 		992194F62AE7EEEE00FAB0CC /* iOSAvanzadoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAvanzadoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9921950D2AE7F23E00FAB0CC /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
 		9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
-		992195112AE7F28E00FAB0CC /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		992195182AE7F30D00FAB0CC /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		9921951A2AE7F32200FAB0CC /* HeroLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroLocation.swift; sourceTree = "<group>"; };
 		9921951E2AE7F35500FAB0CC /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			children = (
 				992195132AE7F2BD00FAB0CC /* Models */,
 				9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */,
-				992195112AE7F28E00FAB0CC /* CoreDataStack.swift */,
 				9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */,
 			);
 			path = Local;
@@ -479,7 +476,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				992195122AE7F28E00FAB0CC /* CoreDataStack.swift in Sources */,
 				992195562AEA960000FAB0CC /* HeroDAO+CoreDataClass.swift in Sources */,
 				9921951B2AE7F32200FAB0CC /* HeroLocation.swift in Sources */,
 				992195372AE7F35500FAB0CC /* SplashViewModel.swift in Sources */,

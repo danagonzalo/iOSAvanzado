@@ -1,6 +1,7 @@
 import UIKit
 import CoreData
 
+
 // MARK: - View Protocol
 protocol HeroesListViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
@@ -14,6 +15,7 @@ protocol HeroesListViewControllerDelegate {
     func onLogoutPressed()
 }
 
+
 // MARK: - View State
 enum HeroesViewState {
     case loading(_ isLoading: Bool)
@@ -21,8 +23,10 @@ enum HeroesViewState {
     case logOut
 }
 
+
 // MARK: - Class
 class HeroesListViewController: UIViewController {
+    
     // MARK: - Outlets y Actions
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
@@ -32,10 +36,10 @@ class HeroesListViewController: UIViewController {
         performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
     
-    // Referencia al managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var viewModel: HeroesListViewControllerDelegate?
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -69,6 +73,7 @@ class HeroesListViewController: UIViewController {
         }
     }
     
+    
     // MARK: - Private functions
     private func initViews() {
         tableView.register(
@@ -92,6 +97,7 @@ class HeroesListViewController: UIViewController {
                         self?.tableView.reloadData()
                     
                     case .logOut:
+                        self?.deleteAllData()
                         self?.viewModel?.onLogoutPressed()
                 }
             }
@@ -121,11 +127,15 @@ extension HeroesListViewController {
         try? self.context.save()
         tableView.reloadData()
     }
+    
+    func deleteAllData() {
+        let delete = NSBatchDeleteRequest(fetchRequest: HeroDAO.fetchRequest())
+        try? context.execute(delete)
+    }
 }
     
 
-
-// MARK: - Extensions: Delegate, DataSource
+// MARK: - Extensions: TableView Delegate/DataSource
 extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.heroesCount ?? 0
