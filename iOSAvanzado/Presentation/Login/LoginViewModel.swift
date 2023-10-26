@@ -79,6 +79,7 @@ class LoginViewModel: LoginViewControllerDelegate {
             return
         }
 
+        // Guardamos el token del usuario
         secureDataProvider.save(token: token)
         viewState?(.navigateToNext)
     }

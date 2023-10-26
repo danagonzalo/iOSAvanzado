@@ -33,6 +33,8 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
 
             self.apiProvider.getHeroes(by: nil, token: token) { heroes in
                 self.heroes = heroes
+                
+                
                 self.viewState?(.updateData)
             }
         }
@@ -59,5 +61,6 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     func onLogoutPressed() {
         // Borramos el token al cerrar sesión
         secureDataProvider.remove(token: secureDataProvider.getToken() ?? "")
+        // TODO: Borrar datos almacenados en CoreData
     }
 }

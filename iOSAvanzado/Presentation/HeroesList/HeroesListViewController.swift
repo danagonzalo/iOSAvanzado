@@ -30,6 +30,7 @@ class HeroesListViewController: UIViewController {
         performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var viewModel: HeroesListViewControllerDelegate?
     
     // MARK: - Lifecycle

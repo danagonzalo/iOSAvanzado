@@ -38,6 +38,7 @@
 		992195442AE7F35500FAB0CC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195332AE7F35500FAB0CC /* Login.storyboard */; };
 		992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195352AE7F35500FAB0CC /* LoginViewController.swift */; };
 		9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195492AE81E0800FAB0CC /* LocationDAO.swift */; };
+		9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		992195342AE7F35500FAB0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		992195352AE7F35500FAB0CC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		992195492AE81E0800FAB0CC /* LocationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
+		9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DragonBall.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				992195132AE7F2BD00FAB0CC /* Models */,
 				9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */,
 				992195112AE7F28E00FAB0CC /* CoreDataStack.swift */,
+				9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				992195412AE7F35500FAB0CC /* HeroDetailViewController.swift in Sources */,
 				9921954A2AE81E0800FAB0CC /* LocationDAO.swift in Sources */,
 				992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */,
+				9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */,
 				992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */,
 				992195402AE7F35500FAB0CC /* HeroDetailViewModel.swift in Sources */,
 			);
@@ -849,6 +853,20 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */,
+			);
+			currentVersion = 9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */;
+			name = iOSAvanzado.xcdatamodeld;
+			path = ../iOSAvanzado.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 992194C52AE7EEEC00FAB0CC /* Project object */;
 }
