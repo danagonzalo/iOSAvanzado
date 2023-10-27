@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="Map" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="MapViewController" customModule="iOSAvanzado" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1i-hg-wdD">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elK-d2-tAT">
+                                <rect key="frame" x="16" y="59" width="77.666666666666671" height="35"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Atrás" imagePadding="4">
+                                    <imageReference key="image" image="chevron.left" catalog="system" symbolScale="small"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onBackButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SGb-cy-fj3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x1i-hg-wdD" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="1i1-jg-4UZ"/>
+                            <constraint firstItem="elK-d2-tAT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="8go-lM-Kb2"/>
+                            <constraint firstItem="x1i-hg-wdD" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HKp-EV-odU"/>
+                            <constraint firstItem="elK-d2-tAT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Y47-kp-ofR"/>
+                            <constraint firstAttribute="bottom" secondItem="x1i-hg-wdD" secondAttribute="bottom" id="beg-IK-gGD"/>
+                            <constraint firstItem="x1i-hg-wdD" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="k8V-3X-0gk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="x1i-hg-wdD" id="1oi-7I-lfo"/>
+                        <segue destination="752-Ez-2Ok" kind="show" identifier="MAP_TO_HEROES_LIST" animates="NO" id="lkI-1K-h0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11.450381679389313" y="-34.507042253521128"/>
+        </scene>
+        <!--HeroesList-->
+        <scene sceneID="OZP-A7-PEA">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="HeroesList" storyboardName="HeroesList" referencedIdentifier="HeroesList" id="752-Ez-2Ok" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9wx-Pf-MuZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubo-Iq-cIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="758" y="8"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

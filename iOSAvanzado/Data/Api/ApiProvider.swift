@@ -9,7 +9,8 @@ protocol ApiProviderProtocol {
 class ApiProvider: ApiProviderProtocol {
     // MARK: - Constants
     static private let apiBaseURL = "https://dragonball.keepcoding.education/api"
-    
+    static let shared: ApiProvider = .init()
+
     private enum Endpoint {
         static let login = "/auth/login"
         static let heroes = "/heros/all"

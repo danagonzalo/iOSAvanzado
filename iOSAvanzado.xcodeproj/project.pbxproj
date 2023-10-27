@@ -38,6 +38,9 @@
 		9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */; };
 		992195572AEA960000FAB0CC /* HeroDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195532AEA960000FAB0CC /* HeroDAO.swift */; };
 		992195592AEA960000FAB0CC /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195552AEA960000FAB0CC /* LocationDAO.swift */; };
+		9960D3B22AEC136A006E0C2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9960D3B12AEC136A006E0C2C /* Map.storyboard */; };
+		9960D3B42AEC1376006E0C2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B32AEC1376006E0C2C /* MapViewController.swift */; };
+		9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B52AEC1380006E0C2C /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DragonBall.xcdatamodel; sourceTree = "<group>"; };
 		992195532AEA960000FAB0CC /* HeroDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDAO.swift; sourceTree = "<group>"; };
 		992195552AEA960000FAB0CC /* LocationDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
+		9960D3B12AEC136A006E0C2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		9960D3B32AEC1376006E0C2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9960D3B52AEC1380006E0C2C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +241,7 @@
 		9921951C2AE7F35500FAB0CC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				9960D3B02AEC135D006E0C2C /* Map */,
 				992195282AE7F35500FAB0CC /* Launch */,
 				9921951D2AE7F35500FAB0CC /* Splash */,
 				992195312AE7F35500FAB0CC /* Login */,
@@ -285,7 +292,6 @@
 		9921952B2AE7F35500FAB0CC /* HeroDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9921952C2AE7F35500FAB0CC /* MapAnnotations */,
 				9921952F2AE7F35500FAB0CC /* HeroDetailViewController.swift */,
 				9921952E2AE7F35500FAB0CC /* HeroDetailViewModel.swift */,
 				992195302AE7F35500FAB0CC /* HeroDetail.storyboard */,
@@ -309,6 +315,17 @@
 				992195332AE7F35500FAB0CC /* Login.storyboard */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9960D3B02AEC135D006E0C2C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9921952C2AE7F35500FAB0CC /* MapAnnotations */,
+				9960D3B12AEC136A006E0C2C /* Map.storyboard */,
+				9960D3B32AEC1376006E0C2C /* MapViewController.swift */,
+				9960D3B52AEC1380006E0C2C /* MapViewModel.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +443,7 @@
 				992195442AE7F35500FAB0CC /* Login.storyboard in Resources */,
 				9921953A2AE7F35500FAB0CC /* HeroCellView.xib in Resources */,
 				992194DD2AE7EEEE00FAB0CC /* Assets.xcassets in Resources */,
+				9960D3B22AEC136A006E0C2C /* Map.storyboard in Resources */,
 				992195422AE7F35500FAB0CC /* HeroDetail.storyboard in Resources */,
 				9921953E2AE7F35500FAB0CC /* LaunchScreen.storyboard in Resources */,
 				992195392AE7F35500FAB0CC /* HeroesList.storyboard in Resources */,
@@ -457,6 +475,7 @@
 				9921951B2AE7F32200FAB0CC /* HeroLocation.swift in Sources */,
 				992195372AE7F35500FAB0CC /* SplashViewModel.swift in Sources */,
 				992195192AE7F30D00FAB0CC /* Hero.swift in Sources */,
+				9960D3B42AEC1376006E0C2C /* MapViewController.swift in Sources */,
 				9921953B2AE7F35500FAB0CC /* HeroCellView.swift in Sources */,
 				992194D12AE7EEEC00FAB0CC /* AppDelegate.swift in Sources */,
 				992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */,
@@ -464,6 +483,7 @@
 				9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */,
 				992195592AEA960000FAB0CC /* LocationDAO.swift in Sources */,
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
+				9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */,
 				9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */,
 				992195572AEA960000FAB0CC /* HeroDAO.swift in Sources */,
 				9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */,

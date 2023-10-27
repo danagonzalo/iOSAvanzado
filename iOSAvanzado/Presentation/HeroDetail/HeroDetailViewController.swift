@@ -18,7 +18,6 @@ enum HeroDetailViewState {
 // MARK: - Class
 class HeroDetailViewController: UIViewController {
     // MARK: - Outlets and actions
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var heroDescription: UITextView!
@@ -33,15 +32,11 @@ class HeroDetailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViews()
         setObservers()
         viewModel?.onViewAppear()
     }
 
-    private func initViews() {
-        mapView.delegate = self
-    }
-
+    
     private func setObservers() {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
@@ -64,16 +59,16 @@ class HeroDetailViewController: UIViewController {
         name.text = hero?.name
         heroDescription.text = hero?.description
 
-        heroLocations.forEach {
-            mapView.addAnnotation(
-                HeroAnnotation(
-                    title: hero?.name,
-                    info: hero?.id,
-                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0.0,
-                                      longitude: Double($0.longitude ?? "") ?? 0.0)
-                )
-            )
-        }
+//        heroLocations.forEach {
+//            mapView.addAnnotation(
+//                HeroAnnotation(
+//                    title: hero?.name,
+//                    info: hero?.id,
+//                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0.0,
+//                                      longitude: Double($0.longitude ?? "") ?? 0.0)
+//                )
+//            )
+//        }
     }
 
     private func makeRounded(image: UIImageView) {
@@ -116,6 +111,5 @@ extension HeroDetailViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let heroAnnotation = view.annotation as? HeroAnnotation else { return }
-        coordinates.text = "Last coordinates: \(heroAnnotation.coordinate.latitude), \(heroAnnotation.coordinate.longitude)"
     }
 }

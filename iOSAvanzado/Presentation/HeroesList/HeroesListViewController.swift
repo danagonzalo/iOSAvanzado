@@ -7,6 +7,7 @@ protocol HeroesListViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
     var heroesCount: Int { get }
     var loginVieModel: LoginViewControllerDelegate { get set }
+    var mapViewModel: MapViewControllerDelegate { get set }
     var heroesList: Heroes { get }
     
     func onViewAppear()
@@ -36,6 +37,13 @@ class HeroesListViewController: UIViewController {
         performSegue(withIdentifier: "HEROES_LIST_TO_LOGIN", sender: nil)
     }
     
+    @IBAction func onViewMapPressed(_ sender: Any) {
+        performSegue(withIdentifier: "HEROES_LIST_TO_MAP", sender: nil)
+
+    }
+    
+    
+    // MARK: - Properties
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var viewModel: HeroesListViewControllerDelegate?
@@ -67,6 +75,14 @@ class HeroesListViewController: UIViewController {
             }
             
             loginViewController.viewModel = loginViewModel
+            
+        case "HEROES_LIST_TO_MAP":
+            guard let mapViewController = segue.destination as? MapViewController,
+                  let mapViewModel = viewModel?.mapViewModel else {
+                return
+            }
+            
+            mapViewController.viewModel = mapViewModel
             
         default:
             break
@@ -110,9 +126,7 @@ class HeroesListViewController: UIViewController {
 extension HeroesListViewController {
     
     func fetchHeroes() {
-        print("Fetching heroes count: \(viewModel!.heroesList.count)")
         for hero in viewModel!.heroesList {
-            print("-- Hero found: \(String(describing: hero.name))")
             let newHero = HeroDAO(context: self.context)
             
             newHero.id = hero.id
@@ -120,8 +134,6 @@ extension HeroesListViewController {
             newHero.longDescription = hero.description
             newHero.photo = hero.photo
             newHero.favorite = hero.isFavorite ?? false
-            
-            print("NEWHERO: \(String(describing: newHero.name))")
         }
         
         try? self.context.save()

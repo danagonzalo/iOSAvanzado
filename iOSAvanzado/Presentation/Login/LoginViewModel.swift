@@ -6,12 +6,16 @@ class LoginViewModel: LoginViewControllerDelegate {
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
 
+
     // MARK: - Properties
     var viewState: ((LoginViewState) -> Void)?
-    var heroesViewModel: HeroesListViewControllerDelegate {
+    
+    
+    var heroesListViewModel: HeroesListViewControllerDelegate {
         HeroesListViewModel(
             apiProvider: apiProvider,
-            loginViewModel: self
+            loginViewModel: self,
+            mapViewModel: MapViewControllerDelegate.self as! MapViewControllerDelegate
         )
     }
 
@@ -20,7 +24,7 @@ class LoginViewModel: LoginViewControllerDelegate {
     init(apiProvider: ApiProviderProtocol, secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
-
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onLoginResponse),

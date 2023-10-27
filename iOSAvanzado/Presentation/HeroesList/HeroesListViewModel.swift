@@ -1,25 +1,29 @@
 import Foundation
 
 class HeroesListViewModel: HeroesListViewControllerDelegate {
-
-    // MARK: - Dependencies
+    
+    // MARK: - Properties
     private let apiProvider: ApiProviderProtocol
 
-
-    // MARK: - Properties
     var loginVieModel: LoginViewControllerDelegate
+    var mapViewModel: MapViewControllerDelegate
     var viewState: ((HeroesViewState) -> Void)?
     var heroesCount: Int { heroesList.count }
 
     var heroesList: Heroes = []
 
+    
     // MARK: - Initializers
     init(apiProvider: ApiProviderProtocol,
-         loginViewModel: LoginViewControllerDelegate) {
+         loginViewModel: LoginViewControllerDelegate,
+         mapViewModel: MapViewControllerDelegate
+    ) {
         self.apiProvider = apiProvider
         self.loginVieModel = loginViewModel
+        self.mapViewModel = mapViewModel
     }
 
+    
     // MARK: - Public functions
     func onViewAppear() {
         viewState?(.loading(true))

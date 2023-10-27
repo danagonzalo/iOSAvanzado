@@ -16,9 +16,16 @@ class SplashViewModel: SplashViewControllerDelegate {
             secureDataProvider: secureDataProvider
         )
     }()
+    
+    lazy var mapViewModel: MapViewControllerDelegate = {
+        MapViewModel()
+    }()
+
 
     lazy var heroesListViewModel: HeroesListViewControllerDelegate = {
-        HeroesListViewModel(apiProvider: apiProvider, loginViewModel: loginViewModel)
+        HeroesListViewModel(apiProvider: apiProvider,
+                            loginViewModel: loginViewModel,
+                            mapViewModel: mapViewModel)
     }()
 
     private var isLogged: Bool {

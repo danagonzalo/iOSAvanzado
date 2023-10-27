@@ -116,7 +116,7 @@
         <!--HeroesList-->
         <scene sceneID="IgG-o1-goU">
             <objects>
-                <viewControllerPlaceholder storyboardName="HeroesList" id="mxl-X8-j8r" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="HeroesList" storyboardName="HeroesList" id="mxl-X8-j8r" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="HVr-kr-H41"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVV-I6-pCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

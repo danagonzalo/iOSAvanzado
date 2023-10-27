@@ -1,9 +1,9 @@
 import UIKit
 
-// MARK: - View Protocol
+// MARK: - Protocol
 protocol LoginViewControllerDelegate {
     var viewState: ((LoginViewState) -> Void)? { get set }
-    var heroesViewModel: HeroesListViewControllerDelegate { get }
+    var heroesListViewModel: HeroesListViewControllerDelegate { get }
     func onLoginPressed(email: String?, password: String?)
 }
 
@@ -45,11 +45,11 @@ class LoginViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "LOGIN_TO_HEROES_LIST",
-              let heroesViewController = segue.destination as? HeroesListViewController else {
+              let heroesListViewController = segue.destination as? HeroesListViewController else {
             return
         }
 
-        heroesViewController.viewModel = viewModel?.heroesViewModel
+        heroesListViewController.viewModel = viewModel?.heroesListViewModel
     }
 
     // MARK: - Private functions
