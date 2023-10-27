@@ -56,6 +56,5 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     func onLogoutPressed() {
         // Borramos el token al cerrar sesión
         SecureDataProvider.shared.remove(token: SecureDataProvider.shared.getToken() ?? "")
-        
     }
 }

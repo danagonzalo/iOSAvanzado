@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 
 
-extension LocationDAO {
+@objc(LocationDAO)
+public class LocationDAO: NSManagedObject {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LocationDAO> {
         return NSFetchRequest<LocationDAO>(entityName: "LocationDAO")

@@ -2,17 +2,20 @@ import UIKit
 import MapKit
 import Kingfisher
 
+// MARK: - Protocol
 protocol HeroDetailViewControllerDelegate {
     var viewState: ((HeroDetailViewState) -> Void)? { get set }
-
+    
     func onViewAppear()
 }
 
+// MARK: - View state
 enum HeroDetailViewState {
     case loading(_ isLoading: Bool)
     case update(hero: Hero?, locations: HeroLocations)
 }
 
+// MARK: - Class
 class HeroDetailViewController: UIViewController {
     // MARK: - Outlets and actions
     @IBOutlet weak var mapView: MKMapView!
@@ -24,8 +27,10 @@ class HeroDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Properties
     var viewModel: HeroDetailViewControllerDelegate?
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
@@ -34,6 +39,7 @@ class HeroDetailViewController: UIViewController {
     }
 
     private func initViews() {
+        mapView.delegate = self
     }
 
     private func setObservers() {
@@ -41,11 +47,11 @@ class HeroDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 switch state {
                     case .loading(let isLoading):
+                        // TODO: self?.loadingView.isHidden = !isLoading
                         break
 
                     case .update(let hero, let locations):
-                        self?.updateViews(hero: hero,
-                                          heroLocations: locations)
+                        self?.updateViews(hero: hero, heroLocations: locations)
                 }
             }
         }
@@ -76,5 +82,40 @@ class HeroDetailViewController: UIViewController {
         image.layer.cornerRadius = image.frame.height / 2
         image.layer.masksToBounds = false
         image.clipsToBounds = true
+    }
+}
+
+//MARK: — MKMapView Delegate Methods
+extension HeroDetailViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "HeroAnnotation"
+        let annotationView = mapView.dequeueReusableAnnotationView(
+            withIdentifier: identifier
+        ) ?? MKAnnotationView(
+            annotation: annotation,
+            reuseIdentifier: identifier
+        )
+
+        annotationView.canShowCallout = true
+        if annotation is MKUserLocation {
+            return nil
+        } else if annotation is HeroAnnotation {
+            // Resize image
+            let pinImage = UIImage(named: "img_map_pin")
+            let size = CGSize(width: 30, height: 30)
+            UIGraphicsBeginImageContext(size)
+            pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+
+            annotationView.image = resizedImage
+            return annotationView
+        } else {
+            return nil
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let heroAnnotation = view.annotation as? HeroAnnotation else { return }
+        coordinates.text = "Last coordinates: \(heroAnnotation.coordinate.latitude), \(heroAnnotation.coordinate.longitude)"
     }
 }

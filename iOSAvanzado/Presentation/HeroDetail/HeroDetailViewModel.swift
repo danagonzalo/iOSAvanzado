@@ -21,12 +21,12 @@ class HeroDetailViewModel: HeroDetailViewControllerDelegate {
     func onViewAppear() {
         viewState?(.loading(true))
 
-        DispatchQueue.global().async {
-            defer { self.viewState?(.loading(false)) }
+        DispatchQueue.global().async { [weak self] in
+            defer { self?.viewState?(.loading(false)) }
             
-            guard let token = self.secureDataProvider.getToken() else { return }
+            guard let token = self?.secureDataProvider.getToken() else { return }
 
-            self.apiProvider.getLocations(for: self.hero.id, token: token) { [weak self] heroLocations in
+            self?.apiProvider.getLocations(for: self?.hero.id, token: token) { [weak self] heroLocations in
                 self?.heroLocations = heroLocations
                 self?.viewState?(.update(hero: self?.hero, locations: heroLocations))
             }

@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 
 
-extension HeroDAO {
+@objc(HeroDAO)
+public class HeroDAO: NSManagedObject {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<HeroDAO> {
         return NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
