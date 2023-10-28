@@ -18,7 +18,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     }()
     
     lazy var mapViewModel: MapViewControllerDelegate = {
-        MapViewModel()
+        MapViewModel(apiProvider: apiProvider)
     }()
 
 

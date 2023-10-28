@@ -6,9 +6,16 @@ final class MapViewModel: MapViewControllerDelegate {
     
     // MARK: - Properties
     private let database = Database()
+    private let apiProvider: ApiProviderProtocol
+
     var heroLocationsList: HeroLocations = []
     var viewState: ((MapViewState) -> Void)?
     
+    
+    //MARK: - Initializer
+    init(apiProvider: ApiProviderProtocol) {
+        self.apiProvider = apiProvider
+    }
 
     func onViewAppear() {
         print("I appeared!")
@@ -21,7 +28,7 @@ final class MapViewModel: MapViewControllerDelegate {
             
             guard let token = SecureDataProvider.shared.getToken() else { return }
             
-            ApiProvider.shared.getHeroes(by: "", token: token) { heroes in
+            self?.apiProvider.getHeroes(by: "", token: token) { heroes in
                 for hero in heroes {
                     self?.getLocations(for: hero, token: token)
                 }
@@ -30,7 +37,7 @@ final class MapViewModel: MapViewControllerDelegate {
     }
     
     private func getLocations(for hero: Hero, token: String) {
-        ApiProvider.shared.getLocations(for: hero.id, token: token) { [weak self] locations in
+        apiProvider.getLocations(for: hero.id, token: token) { [weak self] locations in
             DispatchQueue.main.async { [weak self] in
                 self?.database.fetchLocations(for: hero.id ?? "", locations)
             }
