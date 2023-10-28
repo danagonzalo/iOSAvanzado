@@ -5,7 +5,6 @@ import MapKit
 // MARK: - Protocol
 protocol MapViewControllerDelegate {
     var viewState: ((MapViewState) -> Void)? { get set }
-    var heroesIdList: Heroes { get }
     func onViewAppear()
 }
     
@@ -13,7 +12,7 @@ protocol MapViewControllerDelegate {
 // MARK: - View State
 enum MapViewState {
     case loading(_ isLoading: Bool)
-    case loadData
+    case loadData(hero: Hero, locations: HeroLocations)
 }
 
 
@@ -44,40 +43,37 @@ class MapViewController: UIViewController {
                     case .loading(let isLoading):
                         print("Loading map...")
                         // TODO: self?.loadingView.isHidden = !isLoading
-                    case .loadData:
-                        self?.loadHeroesInMap()
+                    case .loadData(let hero, let heroLocations):
+                        self?.updateViews(hero: hero, heroLocation: heroLocations)
                 }
             }
         }
     }
     
-    private func loadHeroesInMap() {
-        viewModel?.heroesIdList.forEach { hero in
-            getLocations(for: hero)
+    private func updateViews(hero: Hero, heroLocation: HeroLocations) {
+        for location in heroLocation {
+            getLocations(hero: hero, location: location)
         }
     }
         
-    private func getLocations(for hero: Hero) {
-        ApiProvider.shared.getLocations(for: hero.id, 
-                                        token: SecureDataProvider.shared.getToken() ?? "") { [weak self] locations in
-            for location in locations {
-                self?.mapView.addAnnotation(
-                    HeroAnnotation(
-                        title: hero.name,
-                        info: hero.id,
-                        coordinate: .init(latitude: Double(location.latitude ?? "") ?? 0.0,
-                                          longitude: Double(location.longitude ?? "") ?? 0.0)
-                    )
-                )
-            }
-        }
+    private func getLocations(hero: Hero, location: HeroLocation) {
+        mapView.addAnnotation(
+            HeroAnnotation(
+                title: hero.name,
+                info: hero.id,
+                coordinate: .init(latitude: Double(location.latitude ?? "") ?? 0.0,
+                                  longitude: Double(location.longitude ?? "") ?? 0.0)
+            )
+        )
+            
     }
+}
     
     // TODO: Make add Location to map func
 //    private func addToMap(location: LocationDAO) {
 //        
 //    }
-}
+
     
 
         
