@@ -1,6 +1,7 @@
 import Foundation
 import KeychainSwift
 
+
 protocol SecureDataProviderProtocol {
     func save(token: String)
     func getToken() -> String?
@@ -8,6 +9,7 @@ protocol SecureDataProviderProtocol {
 }
 
 final class SecureDataProvider: SecureDataProviderProtocol {
+
     static let shared: SecureDataProvider = .init()
     private let keychain = KeychainSwift()
 

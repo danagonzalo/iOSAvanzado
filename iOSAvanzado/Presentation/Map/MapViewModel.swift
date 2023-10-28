@@ -4,7 +4,8 @@ import Foundation
 final class MapViewModel: MapViewControllerDelegate {
     
     // MARK: - Properties
-    var heroesList: Heroes = []
+//    var heroesIdList: String = []
+    var heroesIdList: Heroes = []
     var viewState: ((MapViewState) -> Void)?
     
     func onViewAppear() {
@@ -13,12 +14,12 @@ final class MapViewModel: MapViewControllerDelegate {
             guard let token = SecureDataProvider.shared.getToken() else { return }
 
             ApiProvider.shared.getHeroes(by: "", token: token) { heroes in
-                print("Hero 1  in map: \(String(describing: heroes.first))")
-                self.heroesList = heroes
-                self.viewState?(.updateData)
+//                for hero in heroes {
+//                    heroesIdList.append(hero.id)
+//                }
+                self.heroesIdList = heroes
+                self.viewState?(.loadData)
             }
-            
-            // TODO: For hero in heroesList...
         }
     }
 }

@@ -15,7 +15,7 @@ class LoginViewModel: LoginViewControllerDelegate {
         HeroesListViewModel(
             apiProvider: apiProvider,
             loginViewModel: self,
-            mapViewModel: MapViewControllerDelegate.self as! MapViewControllerDelegate
+            mapViewModel: MapViewModel()
         )
     }
 

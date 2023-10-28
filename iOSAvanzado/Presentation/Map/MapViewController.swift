@@ -5,14 +5,15 @@ import MapKit
 // MARK: - Protocol
 protocol MapViewControllerDelegate {
     var viewState: ((MapViewState) -> Void)? { get set }
-    var heroesList: Heroes { get }
+    var heroesIdList: Heroes { get }
+    func onViewAppear()
 }
     
 
 // MARK: - View State
 enum MapViewState {
     case loading(_ isLoading: Bool)
-    case updateData
+    case loadData
 }
 
 
@@ -23,7 +24,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func onBackButtonPressed(_ sender: Any) {
-//        performSegue(withIdentifier: "MAP_TO_HEROES_LIST", sender: nil)
         navigationController?.popViewController(animated: true)
     }
     
@@ -31,25 +31,55 @@ class MapViewController: UIViewController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        
-//        for hero in viewModel?.heroesList {
-//            ApiProvider.shared.getLocations(for: hero.id, token: SecureDataProvider.shared.getToken() ?? "") { locations in
-//                print("Locations: \(locations)")
-//            }
-//        }
+        super.viewDidLoad()
+        setObservers()
+        viewModel?.onViewAppear()
     }
     
+    // MARK: - Private functions
+    private func setObservers() {
+        viewModel?.viewState = { [weak self] state in
+            DispatchQueue.main.async {
+                switch state {
+                    case .loading(let isLoading):
+                        print("Loading map...")
+                        // TODO: self?.loadingView.isHidden = !isLoading
+                    case .loadData:
+                        self?.loadHeroesInMap()
+                }
+            }
+        }
+    }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard segue.identifier == "MAP_TO_HEROES_LIST",
-//              let heroesListViewController = segue.destination as? HeroesListViewController else {
-//            return
-//        }
-//
-//        heroesListViewController.viewModel = viewModel?.heroesListViewModel
+    private func loadHeroesInMap() {
+        viewModel?.heroesIdList.forEach { hero in
+            getLocations(for: hero)
+        }
+    }
+        
+    private func getLocations(for hero: Hero) {
+        ApiProvider.shared.getLocations(for: hero.id, 
+                                        token: SecureDataProvider.shared.getToken() ?? "") { [weak self] locations in
+            for location in locations {
+                self?.mapView.addAnnotation(
+                    HeroAnnotation(
+                        title: hero.name,
+                        info: hero.id,
+                        coordinate: .init(latitude: Double(location.latitude ?? "") ?? 0.0,
+                                          longitude: Double(location.longitude ?? "") ?? 0.0)
+                    )
+                )
+            }
+        }
+    }
+    
+    // TODO: Make add Location to map func
+//    private func addToMap(location: LocationDAO) {
+//        
 //    }
 }
-        
+    
+
         
         
 //        heroLocations.forEach {

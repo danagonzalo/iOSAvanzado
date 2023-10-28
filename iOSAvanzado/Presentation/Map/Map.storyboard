@@ -47,22 +47,11 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="x1i-hg-wdD" id="1oi-7I-lfo"/>
-                        <segue destination="752-Ez-2Ok" kind="show" identifier="MAP_TO_HEROES_LIST" animates="NO" id="lkI-1K-h0X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11.450381679389313" y="-34.507042253521128"/>
-        </scene>
-        <!--HeroesList-->
-        <scene sceneID="OZP-A7-PEA">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="HeroesList" storyboardName="HeroesList" referencedIdentifier="HeroesList" id="752-Ez-2Ok" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9wx-Pf-MuZ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubo-Iq-cIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="758" y="8"/>
         </scene>
     </scenes>
     <resources>
