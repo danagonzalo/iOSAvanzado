@@ -4,8 +4,9 @@ import CoreData
 class HeroesListViewModel: HeroesListViewControllerDelegate {
     
     // MARK: - Properties
+    private let database = Database()
     private let apiProvider: ApiProviderProtocol
-
+    
     var loginVieModel: LoginViewControllerDelegate
     var mapViewModel: MapViewControllerDelegate
     var viewState: ((HeroesViewState) -> Void)?
@@ -33,8 +34,12 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
             guard let token = SecureDataProvider.shared.getToken() else { return }
 
             self?.apiProvider.getHeroes(by: nil, token: token) { [weak self] heroes in
-                self?.deleteAllData()
-                self?.fetchHeroes(heroes)
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.database.deleteHeroesData()
+                    self?.database.fetchHeroes(heroes)
+                }
+                
                 self?.heroesList = heroes
                 self?.viewState?(.updateData)
             }
@@ -61,37 +66,10 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     
     func onLogoutPressed() {
         // Borramos el token al cerrar sesión
-        deleteAllData()
-        SecureDataProvider.shared.remove(token: SecureDataProvider.shared.getToken() ?? "")
-    }
-}
-
-// MARK: - Extensions: CoreData
-extension HeroesListViewModel {
-    
-    func fetchHeroes(_ heroesList: Heroes) {
         DispatchQueue.main.async { [weak self] in
-            let context: NSManagedObjectContext = Database.context
-            
-            for hero in heroesList {
-                let newHero = HeroDAO(context: context)
-                
-                newHero.id = hero.id
-                newHero.name = hero.name
-                newHero.longDescription = hero.description
-                newHero.photo = hero.photo
-                newHero.favorite = hero.isFavorite ?? false
-            }
-            
-            try? Database.context.save()
-            self?.viewState!(.updateData)
+            self?.database.deleteAllData()
         }
-    }
-    
-    func deleteAllData() {
-        DispatchQueue.main.async {
-            let delete = NSBatchDeleteRequest(fetchRequest: HeroDAO.fetchRequest())
-            try? Database.context.execute(delete)
-        }
+        
+        SecureDataProvider.shared.remove(token: SecureDataProvider.shared.getToken() ?? "")
     }
 }

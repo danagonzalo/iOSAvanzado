@@ -56,11 +56,11 @@ class MapViewController: UIViewController {
         
     private func updateViews(hero: Hero, heroLocation: HeroLocations) {
         for location in heroLocation {
-            getLocations(hero: hero, location: location)
+            addLocation(for: hero, location)
         }
     }
         
-    private func getLocations(hero: Hero, location: HeroLocation) {
+    private func addLocation(for hero: Hero, _ location: HeroLocation) {
         mapView.addAnnotation(
             HeroAnnotation(
                 title: hero.name,
@@ -71,12 +71,6 @@ class MapViewController: UIViewController {
         )
     }
 }
-    
-    // TODO: Make add Location to map func
-//    private func addToMap(location: LocationDAO) {
-//        
-//    }
-
 
 
 

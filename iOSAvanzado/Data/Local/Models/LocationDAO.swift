@@ -22,7 +22,6 @@ public class LocationDAO: NSManagedObject {
     @NSManaged public var latitude: String?
     @NSManaged public var longitude: String?
     @NSManaged public var hero: HeroDAO?
-
 }
 
 extension LocationDAO : Identifiable {

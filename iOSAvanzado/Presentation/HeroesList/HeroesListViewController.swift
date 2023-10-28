@@ -44,7 +44,6 @@ class HeroesListViewController: UIViewController {
     
     
     // MARK: - Properties
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var viewModel: HeroesListViewControllerDelegate?
     
     
