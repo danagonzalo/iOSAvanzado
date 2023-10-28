@@ -1,10 +1,12 @@
 import UIKit
+import CoreData
 import MapKit
 
 
 // MARK: - Protocol
 protocol MapViewControllerDelegate {
-    var viewState: ((MapViewState) -> Void)? { get set }
+    var heroLocationsList: HeroLocations { get }
+    var viewState: ((MapViewState) ->  Void)? { get set }
     func onViewAppear()
 }
     
@@ -26,6 +28,8 @@ class MapViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    // MARK: - Properties
     var viewModel: MapViewControllerDelegate?
     
     // MARK: - Lifecycle
@@ -40,16 +44,16 @@ class MapViewController: UIViewController {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
-                    case .loading(let isLoading):
-                        print("Loading map...")
-                        // TODO: self?.loadingView.isHidden = !isLoading
-                    case .loadData(let hero, let heroLocations):
-                        self?.updateViews(hero: hero, heroLocation: heroLocations)
+                case .loading(let isLoading):
+                    print("Loading map...")
+                    // TODO: self?.loadingView.isHidden = !isLoading
+                case .loadData(let hero, let heroLocations):
+                    self?.updateViews(hero: hero, heroLocation: heroLocations)
                 }
             }
         }
     }
-    
+        
     private func updateViews(hero: Hero, heroLocation: HeroLocations) {
         for location in heroLocation {
             getLocations(hero: hero, location: location)
@@ -65,7 +69,6 @@ class MapViewController: UIViewController {
                                   longitude: Double(location.longitude ?? "") ?? 0.0)
             )
         )
-            
     }
 }
     
@@ -74,21 +77,6 @@ class MapViewController: UIViewController {
 //        
 //    }
 
-    
-
-        
-        
-//        heroLocations.forEach {
-//            mapView.addAnnotation(
-//                HeroAnnotation(
-//                    title: hero?.name,
-//                    info: hero?.id,
-//                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0.0,
-//                                      longitude: Double($0.longitude ?? "") ?? 0.0)
-//                )
-//            )
-//        }
-//    }
 
 
 

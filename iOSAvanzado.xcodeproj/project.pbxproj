@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99207F332AED677A003FC37C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207F322AED677A003FC37C /* Database.swift */; };
 		992194D12AE7EEEC00FAB0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */; };
 		992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */; };
 		992194DD2AE7EEEE00FAB0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 992194DC2AE7EEEE00FAB0CC /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		99207F322AED677A003FC37C /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		992194CD2AE7EEEC00FAB0CC /* iOSAvanzado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAvanzado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				992195132AE7F2BD00FAB0CC /* Models */,
 				9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */,
 				9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */,
+				99207F322AED677A003FC37C /* Database.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				992195592AEA960000FAB0CC /* LocationDAO.swift in Sources */,
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
 				9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */,
+				99207F332AED677A003FC37C /* Database.swift in Sources */,
 				9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */,
 				992195572AEA960000FAB0CC /* HeroDAO.swift in Sources */,
 				9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */,

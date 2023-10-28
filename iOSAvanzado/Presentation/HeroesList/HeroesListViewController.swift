@@ -39,13 +39,12 @@ class HeroesListViewController: UIViewController {
     
     @IBAction func onViewMapPressed(_ sender: Any) {
         performSegue(withIdentifier: "HEROES_LIST_TO_MAP", sender: nil)
-
+        
     }
     
     
     // MARK: - Properties
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var viewModel: HeroesListViewControllerDelegate?
     
     
@@ -105,47 +104,19 @@ class HeroesListViewController: UIViewController {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
-                    case .loading(let isLoading):
-                        self?.loadingView.isHidden = !isLoading
-                        
-                    case .updateData:
-                        self?.fetchHeroes()
-                        self?.tableView.reloadData()
+                case .loading(let isLoading):
+                    self?.loadingView.isHidden = !isLoading
                     
-                    case .logOut:
-                        self?.deleteAllData()
-                        self?.viewModel?.onLogoutPressed()
+                case .updateData:
+                    self?.tableView.reloadData()
+                    
+                case .logOut:
+                    self?.viewModel?.onLogoutPressed()
                 }
             }
         }
     }
 }
-
-
-// MARK: - Extensions: CoreData
-extension HeroesListViewController {
-    
-    func fetchHeroes() {
-        for hero in viewModel!.heroesList {
-            let newHero = HeroDAO(context: self.context)
-            
-            newHero.id = hero.id
-            newHero.name = hero.name
-            newHero.longDescription = hero.description
-            newHero.photo = hero.photo
-            newHero.favorite = hero.isFavorite ?? false
-        }
-        
-        try? self.context.save()
-        tableView.reloadData()
-    }
-    
-    func deleteAllData() {
-        let delete = NSBatchDeleteRequest(fetchRequest: HeroDAO.fetchRequest())
-        try? context.execute(delete)
-    }
-}
-    
 
 // MARK: - Extensions: TableView Delegate/DataSource
 extension HeroesListViewController: UITableViewDelegate, UITableViewDataSource {
