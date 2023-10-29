@@ -20,9 +20,7 @@ class HeroDetailViewModel: HeroDetailViewControllerDelegate {
         DispatchQueue.global().async { [weak self] in
             defer { self?.viewState?(.loading(false)) }
             
-            guard let token = self?.secureDataProvider.getToken() else { return }
-
-            ApiProvider.shared.getLocations(for: self?.hero.id, token: token) { [weak self] heroLocations in
+            ApiProvider.shared.getLocations(for: self?.hero.id ?? "") { [weak self] heroLocations in
                 self?.heroLocations = heroLocations
                 self?.viewState?(.update(hero: self?.hero, locations: heroLocations))
             }

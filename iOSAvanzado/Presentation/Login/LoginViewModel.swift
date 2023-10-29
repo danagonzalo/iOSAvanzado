@@ -81,11 +81,6 @@ class LoginViewModel: LoginViewControllerDelegate {
     @objc func onLoginResponse(token: String) {
         defer { viewState?(.loading(false)) }
 
-//        guard let token = notification.userInfo?[NotificationCenter.tokenKey] as? String,
-//              !token.isEmpty else {
-//            return
-//        }
-
         // Guardamos el token del usuario
         secureDataProvider.save(token: token)
         viewState?(.navigateToNext)

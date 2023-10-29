@@ -1,11 +1,9 @@
 import Foundation
 
-//protocol ApiProviderProtocol {
-//    func login(for user: String, with password: String, completion: @escaping  ((Result<String, 
-//        NetworkError>) -> Void))
-//    func getHeroes(by name: String?, token: String,  completion: @escaping ((Result<Heroes, NetworkError>) -> Void))
-//    func getLocations(for heroId: String?, token: String,  completion: @escaping ((Result<HeroLocations, NetworkError>) -> Void))
-//}
+public protocol ApiProviderProtocol {
+    func login(for user: String, with password: String, completion: @escaping  ((Result<String, NetworkError>) -> Void))
+    func getHeroes(by name: String, completion: ((Heroes) -> Void)?)
+    func getLocations(for heroId: String, completion: ((HeroLocations) -> Void)?)}
 
 public enum NetworkError: Error {
     case unknown
@@ -17,11 +15,11 @@ public enum NetworkError: Error {
     case noToken
 }
 
-class ApiProvider {
+class ApiProvider: ApiProviderProtocol {
     // MARK: - Constants
     static let shared: ApiProvider = .init()
     static private let apiBaseURL = "https://dragonball.keepcoding.education/api"
-
+    private var token: String = ""
 
     
     private enum Endpoint {
@@ -88,18 +86,20 @@ class ApiProvider {
 
     
     // MARK: - Get heroes
-    func getHeroes(by name: String?, token: String, completion: ((Heroes) -> Void)? = nil) {
+    func getHeroes(by name: String, completion: ((Heroes) -> Void)? = nil) {
+        token = SecureDataProvider.shared.getToken() ?? ""
+        
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroes)") else {
             return
         }
 
-        let jsonData: [String: Any] = ["name": name ?? ""]
+        let jsonData: [String: Any] = ["name": name]
         let jsonParameters = try? JSONSerialization.data(withJSONObject: jsonData)
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("Bearer \(String(describing: token))", forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = jsonParameters
 
         session.dataTask(with: urlRequest) { (data, response, error) in
@@ -129,18 +129,20 @@ class ApiProvider {
 
     
     // MARK: - Get locations for hero
-    func getLocations(for heroId: String?, token: String, completion: ((HeroLocations) -> Void)? = nil) {
+    func getLocations(for heroId: String, completion: ((HeroLocations) -> Void)? = nil) {
+        token = SecureDataProvider.shared.getToken() ?? ""
+
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroLocations)") else {
             return
         }
 
-        let jsonData: [String: Any] = ["id": heroId ?? ""]
+        let jsonData: [String: Any] = ["id": heroId]
         let jsonParameters = try? JSONSerialization.data(withJSONObject: jsonData)
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)",  forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("Bearer \(String(describing: token))",  forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = jsonParameters
 
         session.dataTask(with: urlRequest) { (data, response, error) in

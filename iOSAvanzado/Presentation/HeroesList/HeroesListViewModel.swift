@@ -28,9 +28,8 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
 
         DispatchQueue.global().async { [weak self] in
             defer { self?.viewState?(.loading(false)) }
-            guard let token = SecureDataProvider.shared.getToken() else { return }
 
-            ApiProvider.shared.getHeroes(by: nil, token: token) { [weak self] heroes in
+            ApiProvider.shared.getHeroes(by: "") { [weak self] heroes in
                 
                 DispatchQueue.main.async { [weak self] in
                     self?.database.deleteHeroesData()
