@@ -7,7 +7,7 @@ final class ApiProviderTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = MockApiService()
+        sut = MockApiProvider()
     }
     
     override func tearDown() {

@@ -1,7 +1,7 @@
 import Foundation
 import iOSAvanzado
 
-class MockApiService {
+class MockApiProvider {
     
     private let responseDataHeroes: [[String: Any]] = [
         [
@@ -62,7 +62,7 @@ class MockApiService {
 }
 
 // MARK: - Protocol
-extension MockApiService: ApiProviderProtocol {
+extension MockApiProvider: ApiProviderProtocol {
     func login(for user: String, with password: String, completion: @escaping ((Result<String, iOSAvanzado.NetworkError>) -> Void)) {}
     
     func getHeroes(by name: String, completion: ((iOSAvanzado.Heroes) -> Void)?) {

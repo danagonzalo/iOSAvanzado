@@ -4,15 +4,15 @@ import CoreData
 
 final class CoreDataStackTests: XCTestCase {
     
-    private var sut: TestCoreDataStack!
+    private var sut: MockCoreDataStack!
     private var mockApiService: ApiProviderProtocol!
     private var heroesList: Heroes!
     private var locationsList: HeroLocations!
     private var someHeroId: String = "D13A40E5-4418-4223-9CE6-D2F9A28EBE94"
     
     override func setUp() {
-        sut = TestCoreDataStack()
-        mockApiService = MockApiService()
+        sut = MockCoreDataStack()
+        mockApiService = MockApiProvider()
         
         mockApiService.getHeroes(by: "") { [weak self] heroes in
             self?.heroesList = heroes
@@ -38,7 +38,7 @@ final class CoreDataStackTests: XCTestCase {
                 
         let expectation = self.expectation(
             forNotification: .NSManagedObjectContextDidSave,
-            object: sut.mainContext) { _ in
+            object: sut.context) { _ in
                 return true
         }
         
@@ -101,7 +101,7 @@ final class CoreDataStackTests: XCTestCase {
                 
         let expectation = self.expectation(
             forNotification: .NSManagedObjectContextDidSave,
-            object: sut.mainContext) { _ in
+            object: sut.context) { _ in
                 return true
         }
         
