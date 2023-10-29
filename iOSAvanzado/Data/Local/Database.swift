@@ -2,10 +2,19 @@ import Foundation
 import UIKit
 import CoreData
 
-final class Database {
+public protocol DatabaseProtocol {
+    func fetchHeroes(_ heroesList: Heroes)
+    func fetchLocations(for heroId: String, _ locations: HeroLocations)
+    func getHero(by heroId: String) -> HeroDAO?
+    func deleteHeroesData()
+    func deleteLocationsData()
+    func deleteAllData()
+}
+
+final class Database: DatabaseProtocol {
     
     // MARK: - Properties
-    var context: NSManagedObjectContext?
+    private var context: NSManagedObjectContext?
     
     
     // MARK: - Initializer
@@ -48,7 +57,7 @@ final class Database {
         try? context!.save()
     }
     
-    private func getHero(by heroId: String) -> HeroDAO? {
+    func getHero(by heroId: String) -> HeroDAO? {
         let hero: HeroDAO?
         let fetchHero = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
         fetchHero.predicate = NSPredicate(format: "id = '\(heroId)'")

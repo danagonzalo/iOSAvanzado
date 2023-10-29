@@ -5,10 +5,6 @@ final class ApiProviderTests: XCTestCase {
     
     private var sut: ApiProviderProtocol!
     
-    override func setUpWithError() throws {}
-    
-    override func tearDownWithError() throws {}
-    
     override func setUp() {
         super.setUp()
         sut = MockApiService()
