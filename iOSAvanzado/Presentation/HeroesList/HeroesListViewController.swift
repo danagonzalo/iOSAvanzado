@@ -97,6 +97,7 @@ class HeroesListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 200
     }
     
     private func setObservers() {

@@ -10,7 +10,7 @@ import Kingfisher
 
 class HeroCellView: UITableViewCell {
     static let identifier: String = "HeroCellView"
-    static let estimatedHeight: CGFloat = 256
+    static let estimatedHeight: CGFloat = 200
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var name: UILabel!
