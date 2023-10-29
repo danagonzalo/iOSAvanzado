@@ -5,7 +5,7 @@ import CoreData
 final class MapViewModel: MapViewControllerDelegate {
     
     // MARK: - Properties
-    private let database = Database()
+    private let database = CoreDataStack()
 
     var heroLocationsList: HeroLocations = []
     var viewState: ((MapViewState) -> Void)?
@@ -34,7 +34,7 @@ final class MapViewModel: MapViewControllerDelegate {
         
         ApiProvider.shared.getLocations(for: heroId) { [weak self] locations in
             DispatchQueue.main.async { [weak self] in
-                self?.database.fetchLocations(for: heroId, locations)
+                self?.database.saveHeroLocations(for: heroId, locations)
             }
             
             self?.heroLocationsList = locations

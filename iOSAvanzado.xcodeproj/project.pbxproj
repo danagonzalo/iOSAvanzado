@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		99207F332AED677A003FC37C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207F322AED677A003FC37C /* Database.swift */; };
+		99207F332AED677A003FC37C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207F322AED677A003FC37C /* CoreDataStack.swift */; };
 		992194D12AE7EEEC00FAB0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */; };
 		992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */; };
 		992194DD2AE7EEEE00FAB0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 992194DC2AE7EEEE00FAB0CC /* Assets.xcassets */; };
@@ -36,16 +36,16 @@
 		992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195322AE7F35500FAB0CC /* LoginViewModel.swift */; };
 		992195442AE7F35500FAB0CC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992195332AE7F35500FAB0CC /* Login.storyboard */; };
 		992195452AE7F35500FAB0CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195352AE7F35500FAB0CC /* LoginViewController.swift */; };
-		9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */; };
 		992195572AEA960000FAB0CC /* HeroDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195532AEA960000FAB0CC /* HeroDAO.swift */; };
 		992195592AEA960000FAB0CC /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992195552AEA960000FAB0CC /* LocationDAO.swift */; };
 		9960D3B22AEC136A006E0C2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9960D3B12AEC136A006E0C2C /* Map.storyboard */; };
 		9960D3B42AEC1376006E0C2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B32AEC1376006E0C2C /* MapViewController.swift */; };
 		9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B52AEC1380006E0C2C /* MapViewModel.swift */; };
+		996F96FE2AEE9C88009187EB /* iOSAvanzado.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 996F96FC2AEE9C88009187EB /* iOSAvanzado.xcdatamodeld */; };
 		996FBBD62AEDF1B300BEA394 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FBBD52AEDF1B300BEA394 /* MockApiService.swift */; };
 		99AB621B2AEE7B88002D8BED /* SecureDataProvideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB621A2AEE7B88002D8BED /* SecureDataProvideTests.swift */; };
-		99AB621D2AEE8A49002D8BED /* MockDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB621C2AEE8A49002D8BED /* MockDatabase.swift */; };
-		99AB621F2AEE8C00002D8BED /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB621E2AEE8C00002D8BED /* DatabaseTests.swift */; };
+		99AB621D2AEE8A49002D8BED /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB621C2AEE8A49002D8BED /* TestCoreDataStack.swift */; };
+		99AB62272AEE9781002D8BED /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB62262AEE9781002D8BED /* CoreDataStackTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		99207F322AED677A003FC37C /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		99207F322AED677A003FC37C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		992194CD2AE7EEEC00FAB0CC /* iOSAvanzado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAvanzado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		992194D02AE7EEEC00FAB0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		992194D22AE7EEEC00FAB0CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,16 +97,16 @@
 		992195322AE7F35500FAB0CC /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		992195342AE7F35500FAB0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		992195352AE7F35500FAB0CC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DragonBall.xcdatamodel; sourceTree = "<group>"; };
 		992195532AEA960000FAB0CC /* HeroDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDAO.swift; sourceTree = "<group>"; };
 		992195552AEA960000FAB0CC /* LocationDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
 		9960D3B12AEC136A006E0C2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		9960D3B32AEC1376006E0C2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9960D3B52AEC1380006E0C2C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		996F96FD2AEE9C88009187EB /* iOSAvanzado.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSAvanzado.xcdatamodel; sourceTree = "<group>"; };
 		996FBBD52AEDF1B300BEA394 /* MockApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		99AB621A2AEE7B88002D8BED /* SecureDataProvideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureDataProvideTests.swift; sourceTree = "<group>"; };
-		99AB621C2AEE8A49002D8BED /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
-		99AB621E2AEE8C00002D8BED /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
+		99AB621C2AEE8A49002D8BED /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		99AB62262AEE9781002D8BED /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +176,7 @@
 				996FBBD42AEDF1A500BEA394 /* Mocks */,
 				992194EA2AE7EEEE00FAB0CC /* ApiProviderTests.swift */,
 				99AB621A2AEE7B88002D8BED /* SecureDataProvideTests.swift */,
-				99AB621E2AEE8C00002D8BED /* DatabaseTests.swift */,
+				99AB62262AEE9781002D8BED /* CoreDataStackTests.swift */,
 			);
 			path = iOSAvanzadoTests;
 			sourceTree = "<group>";
@@ -220,8 +220,7 @@
 			children = (
 				992195132AE7F2BD00FAB0CC /* Models */,
 				9921950F2AE7F27B00FAB0CC /* SecureDataProvider.swift */,
-				9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */,
-				99207F322AED677A003FC37C /* Database.swift */,
+				99207F322AED677A003FC37C /* CoreDataStack.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -231,6 +230,7 @@
 			children = (
 				992195532AEA960000FAB0CC /* HeroDAO.swift */,
 				992195552AEA960000FAB0CC /* LocationDAO.swift */,
+				996F96FC2AEE9C88009187EB /* iOSAvanzado.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				996FBBD52AEDF1B300BEA394 /* MockApiService.swift */,
-				99AB621C2AEE8A49002D8BED /* MockDatabase.swift */,
+				99AB621C2AEE8A49002D8BED /* TestCoreDataStack.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -506,15 +506,15 @@
 				9921950E2AE7F23E00FAB0CC /* ApiProvider.swift in Sources */,
 				992195592AEA960000FAB0CC /* LocationDAO.swift in Sources */,
 				992194D32AE7EEEC00FAB0CC /* SceneDelegate.swift in Sources */,
+				996F96FE2AEE9C88009187EB /* iOSAvanzado.xcdatamodeld in Sources */,
 				9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */,
-				99207F332AED677A003FC37C /* Database.swift in Sources */,
+				99207F332AED677A003FC37C /* CoreDataStack.swift in Sources */,
 				9921953D2AE7F35500FAB0CC /* HeroesListViewModel.swift in Sources */,
 				992195572AEA960000FAB0CC /* HeroDAO.swift in Sources */,
 				9921953C2AE7F35500FAB0CC /* HeroesListViewController.swift in Sources */,
 				992195102AE7F27B00FAB0CC /* SecureDataProvider.swift in Sources */,
 				992195412AE7F35500FAB0CC /* HeroDetailViewController.swift in Sources */,
 				992195362AE7F35500FAB0CC /* SplashViewController.swift in Sources */,
-				9921954D2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld in Sources */,
 				992195432AE7F35500FAB0CC /* LoginViewModel.swift in Sources */,
 				992195402AE7F35500FAB0CC /* HeroDetailViewModel.swift in Sources */,
 			);
@@ -524,9 +524,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99AB621D2AEE8A49002D8BED /* MockDatabase.swift in Sources */,
+				99AB621D2AEE8A49002D8BED /* TestCoreDataStack.swift in Sources */,
 				992194EB2AE7EEEE00FAB0CC /* ApiProviderTests.swift in Sources */,
-				99AB621F2AEE8C00002D8BED /* DatabaseTests.swift in Sources */,
+				99AB62272AEE9781002D8BED /* CoreDataStackTests.swift in Sources */,
 				99AB621B2AEE7B88002D8BED /* SecureDataProvideTests.swift in Sources */,
 				996FBBD62AEDF1B300BEA394 /* MockApiService.swift in Sources */,
 			);
@@ -899,14 +899,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9921954B2AEA6D5F00FAB0CC /* iOSAvanzado.xcdatamodeld */ = {
+		996F96FC2AEE9C88009187EB /* iOSAvanzado.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */,
+				996F96FD2AEE9C88009187EB /* iOSAvanzado.xcdatamodel */,
 			);
-			currentVersion = 9921954C2AEA6D5F00FAB0CC /* DragonBall.xcdatamodel */;
-			name = iOSAvanzado.xcdatamodeld;
-			path = ../iOSAvanzado.xcdatamodeld;
+			currentVersion = 996F96FD2AEE9C88009187EB /* iOSAvanzado.xcdatamodel */;
+			path = iOSAvanzado.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

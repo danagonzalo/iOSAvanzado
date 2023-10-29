@@ -2,19 +2,20 @@ import Foundation
 import UIKit
 import CoreData
 
-public protocol DatabaseProtocol {
-    func fetchHeroes(_ heroesList: Heroes)
-    func fetchLocations(for heroId: String, _ locations: HeroLocations)
-    func getHero(by heroId: String) -> HeroDAO?
+public protocol CoreDataStackProtocol {
+    func saveHeroes(_ heroesList: Heroes)
+    func fetchHeroes() -> [HeroDAO]?
+    func fetchHeroLocations() -> [LocationDAO]?
+    func saveHeroLocations(for heroId: String, _ locations: HeroLocations)
     func deleteHeroesData()
     func deleteLocationsData()
     func deleteAllData()
 }
 
-final class Database: DatabaseProtocol {
+class CoreDataStack: CoreDataStackProtocol {
     
     // MARK: - Properties
-    private var context: NSManagedObjectContext?
+    private var context: NSManagedObjectContext!
     
     
     // MARK: - Initializer
@@ -25,11 +26,26 @@ final class Database: DatabaseProtocol {
         }
     }
 
+    // MARK: Fetch data
+    func fetchHeroes() -> [HeroDAO]? {
+        let fetchRequest = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
+        let heroes = try? context.fetch(fetchRequest)
+        
+        return heroes
+    }
     
-    // MARK: - Fetch heroes
-    func fetchHeroes(_ heroesList: Heroes) {
+    func fetchHeroLocations() -> [LocationDAO]? {
+        let fetchRequest = NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
+        let locations = try? context.fetch(fetchRequest)
+        
+        return locations
+
+    }
+    
+    // MARK: - Save data
+    func saveHeroes(_ heroesList: Heroes) {
         for hero in heroesList {
-            let newHero = HeroDAO(context: context!)
+            let newHero = HeroDAO(context: context)
             
             newHero.id = hero.id
             newHero.name = hero.name
@@ -38,14 +54,14 @@ final class Database: DatabaseProtocol {
             newHero.favorite = hero.isFavorite ?? false
         }
         
-        try? context!.save()
+        try? context.save()
     }
     
     
     // MARK: - Fetch locations
-    func fetchLocations(for heroId: String, _ locations: HeroLocations) {
+    func saveHeroLocations(for heroId: String, _ locations: HeroLocations) {
         for location in locations {
-            let newLocation = LocationDAO(context: context!)
+            let newLocation = LocationDAO(context: context)
             
             newLocation.id = location.id
             newLocation.date = location.date
@@ -54,30 +70,30 @@ final class Database: DatabaseProtocol {
             newLocation.hero = getHero(by: heroId)
         }
     
-        try? context!.save()
+        try? context.save()
     }
     
-    func getHero(by heroId: String) -> HeroDAO? {
+    private func getHero(by heroId: String) -> HeroDAO? {
         let hero: HeroDAO?
         let fetchHero = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
         fetchHero.predicate = NSPredicate(format: "id = '\(heroId)'")
         
-        hero = try? context!.fetch(fetchHero).first
+        hero = try? context.fetch(fetchHero).first
         
         return hero
     }
 
     
-    // MARK: - Deleting data
+    // MARK: - Delete data
     func deleteHeroesData() {
         let delete = NSBatchDeleteRequest(fetchRequest: HeroDAO.fetchRequest())
-        try? context!.execute(delete)
+        try? context.execute(delete)
         
     }
     
     func deleteLocationsData() {
         let delete = NSBatchDeleteRequest(fetchRequest: LocationDAO.fetchRequest())
-        try? context!.execute(delete)
+        try? context.execute(delete)
     }
 
     func deleteAllData() {

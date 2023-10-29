@@ -4,7 +4,7 @@ import CoreData
 class HeroesListViewModel: HeroesListViewControllerDelegate {
     
     // MARK: - Properties
-    private let database = Database()
+    private let database = CoreDataStack()
     
     var loginVieModel: LoginViewControllerDelegate
     var mapViewModel: MapViewControllerDelegate
@@ -33,7 +33,7 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
                 
                 DispatchQueue.main.async { [weak self] in
                     self?.database.deleteHeroesData()
-                    self?.database.fetchHeroes(heroes)
+                    self?.database.saveHeroes(heroes)
                 }
                 
                 self?.heroesList = heroes
