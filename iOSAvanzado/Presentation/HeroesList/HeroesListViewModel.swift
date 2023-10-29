@@ -5,7 +5,6 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     
     // MARK: - Properties
     private let database = Database()
-    private let apiProvider: ApiProviderProtocol
     
     var loginVieModel: LoginViewControllerDelegate
     var mapViewModel: MapViewControllerDelegate
@@ -16,10 +15,8 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
     
     
     // MARK: - Initializers
-    init(apiProvider: ApiProviderProtocol,
-         loginViewModel: LoginViewControllerDelegate,
+    init(loginViewModel: LoginViewControllerDelegate,
          mapViewModel: MapViewControllerDelegate) {
-        self.apiProvider = apiProvider
         self.loginVieModel = loginViewModel
         self.mapViewModel = mapViewModel
     }
@@ -33,14 +30,14 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
             defer { self?.viewState?(.loading(false)) }
             guard let token = SecureDataProvider.shared.getToken() else { return }
 
-            self?.apiProvider.getHeroes(by: nil, token: token) { [weak self] heroes in
+            ApiProvider.shared.getHeroes(by: nil, token: token) { [weak self] heroes in
                 
                 DispatchQueue.main.async { [weak self] in
                     self?.database.deleteHeroesData()
-                    self?.database.fetchHeroes(heroes)
+                    try? self?.database.fetchHeroes(heroes.get())
                 }
                 
-                self?.heroesList = heroes
+                try? self?.heroesList = heroes.get()
                 self?.viewState?(.updateData)
             }
         }
@@ -59,7 +56,6 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
         
         return HeroDetailViewModel(
             hero: selectedHero,
-            apiProvider: apiProvider,
             secureDataProvider: SecureDataProvider.shared
         )
     }

@@ -3,7 +3,6 @@ import Foundation
 
 class LoginViewModel: LoginViewControllerDelegate {
     // MARK: - Dependencies
-    private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
 
 
@@ -13,16 +12,14 @@ class LoginViewModel: LoginViewControllerDelegate {
     
     var heroesListViewModel: HeroesListViewControllerDelegate {
         HeroesListViewModel(
-            apiProvider: apiProvider,
             loginViewModel: self,
-            mapViewModel: MapViewModel(apiProvider: apiProvider)
+            mapViewModel: MapViewModel()
         )
     }
 
 
     // MARK: - Initializers
-    init(apiProvider: ApiProviderProtocol, secureDataProvider: SecureDataProviderProtocol) {
-        self.apiProvider = apiProvider
+    init(secureDataProvider: SecureDataProviderProtocol) {
         self.secureDataProvider = secureDataProvider
         
         NotificationCenter.default.addObserver(
@@ -69,18 +66,25 @@ class LoginViewModel: LoginViewControllerDelegate {
     }
 
     private func doLoginWith(email: String, password: String) {
-        apiProvider.login(for: email, with: password)
+        ApiProvider.shared.login(for: email, with: password) { [weak self] result in
+            switch result {
+                case .success(_):
+                    try? self?.onLoginResponse(token: result.get())
+                case .failure(_):
+                    return
+            }
+        }
 
     }
     
     // MARK: - Notification function
-    @objc func onLoginResponse(_ notification: Notification) {
+    @objc func onLoginResponse(token: String) {
         defer { viewState?(.loading(false)) }
 
-        guard let token = notification.userInfo?[NotificationCenter.tokenKey] as? String,
-              !token.isEmpty else {
-            return
-        }
+//        guard let token = notification.userInfo?[NotificationCenter.tokenKey] as? String,
+//              !token.isEmpty else {
+//            return
+//        }
 
         // Guardamos el token del usuario
         secureDataProvider.save(token: token)

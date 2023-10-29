@@ -15,7 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as? SplashViewController
         rootViewController?.viewModel = SplashViewModel(
-            apiProvider: ApiProvider(),
             secureDataProvider: SecureDataProvider()
         )
 

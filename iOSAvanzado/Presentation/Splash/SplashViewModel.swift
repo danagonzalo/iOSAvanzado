@@ -5,26 +5,23 @@ class SplashViewModel: SplashViewControllerDelegate {
     
     
     // MARK: - Dependencies
-    private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
     
     var viewState: ((SplashViewState) -> Void)?
     
     lazy var loginViewModel: LoginViewControllerDelegate = {
         LoginViewModel(
-            apiProvider: apiProvider,
             secureDataProvider: secureDataProvider
         )
     }()
     
     lazy var mapViewModel: MapViewControllerDelegate = {
-        MapViewModel(apiProvider: apiProvider)
+        MapViewModel()
     }()
 
 
     lazy var heroesListViewModel: HeroesListViewControllerDelegate = {
-        HeroesListViewModel(apiProvider: apiProvider,
-                            loginViewModel: loginViewModel,
+        HeroesListViewModel(loginViewModel: loginViewModel,
                             mapViewModel: mapViewModel)
     }()
 
@@ -33,8 +30,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     }
 
     // MARK: - Initializers
-    init(apiProvider: ApiProviderProtocol, secureDataProvider: SecureDataProviderProtocol) {
-        self.apiProvider = apiProvider
+    init(secureDataProvider: SecureDataProviderProtocol) {
         self.secureDataProvider = secureDataProvider
     }
 
