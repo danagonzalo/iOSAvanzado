@@ -38,7 +38,6 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LOGIN IS USER LOGGED: \(SecureDataProvider.shared.isLogged)")
 
         initViews()
         setObservers()

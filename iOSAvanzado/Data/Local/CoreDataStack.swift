@@ -78,7 +78,7 @@ class CoreDataStack: CoreDataStackProtocol {
             let fetchRequest = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
             heroes = try context.fetch(fetchRequest)
         } catch {
-            print("--------\(error)")
+            print(error)
         }
         
         var newList: Heroes = []
@@ -86,7 +86,6 @@ class CoreDataStack: CoreDataStackProtocol {
             newList.append($0.toModel()!)
         }
         
-        print("MEWLIST COUNT COREDATA: \(newList.count)")
         
         return newList
     }
@@ -97,7 +96,7 @@ class CoreDataStack: CoreDataStackProtocol {
             let fetchRequest = NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
             locations = try context.fetch(fetchRequest)
         } catch {
-            print("--------\(error)")
+            print(error)
         }
         
         var newList: HeroLocations = []
@@ -120,13 +119,7 @@ class CoreDataStack: CoreDataStackProtocol {
             newHero.favorite = hero.isFavorite ?? false
         }
         
-        do {
-            try context.save()
-            print("SUCCESS SAVING!")
-        } catch {
-            print("ERRROR SAVING: \(error)")
-        }
-        
+        try? context.save()
     }
     
     // MARK: - Fetch locations

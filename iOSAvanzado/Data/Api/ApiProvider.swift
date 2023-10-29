@@ -38,15 +38,12 @@ class ApiProvider: ApiProviderProtocol {
     func login(for user: String, with password: String, completion: @escaping  ((Result<String, NetworkError>) -> Void)) {
 
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.login)") else {
-            print("LOGIN MALFOMRED")
             completion(.failure(.malformedUrl))
             return
         }
 
         guard let loginData = String(format: "%@:%@", user, password)
             .data(using: .utf8)?.base64EncodedString() else {
-            print("LOGIN NODATA")
-
             completion(.failure(.noData))
             return
         }
@@ -62,36 +59,27 @@ class ApiProvider: ApiProviderProtocol {
             let statusCode = urlResponse?.statusCode
             
             guard error == nil else {
-                print("LOGIN UNK")
-
                 completion(.failure(.unknown))
                 return
             }
 
             guard let data else {
-                print("LOGIN NODATA")
-
                 completion(.failure(.noData))
                 return
             }
 
 
             guard statusCode == 200 else {
-                print("LOGIN STATUSCODE")
-
                 completion(.failure(.statusCode(code: statusCode)))
                 return
             }
 
             guard let token = String(data: data, encoding: .utf8) else {
-                print("LOGIN DECODINFG")
-
                 completion(.failure(.decodingFailed))
                 return
             }
             
             completion(.success(token))
-            print("LOGINTOKEN: \(token)")
         }.resume()
         
     }
@@ -100,7 +88,6 @@ class ApiProvider: ApiProviderProtocol {
     // MARK: - Get heroes
     func getHeroes(by name: String, completion: ((Heroes) -> Void)? = nil) {
         token = SecureDataProvider.shared.getToken() ?? ""
-        print("TOKEN GETHEROES: \(token)")
         guard let url = URL(string: "\(ApiProvider.apiBaseURL)\(Endpoint.heroes)") else {
             return
         }
@@ -120,28 +107,21 @@ class ApiProvider: ApiProviderProtocol {
             defer { completion?(result) }
             
             guard error == nil else {
-                print("UNKSONW")
                 return
             }
 
             guard let data else {
-                print("N O DATA")
-
                 return
             }
             
             guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                print("STATUSCODE")
-
                 return
             }
 
             guard let heroes = try? JSONDecoder().decode(Heroes.self, from: data) else {
-                print("DECODING")
                 return
             }
             
-            print("API get heroes COUNT: \(heroes.count)")
             result = heroes
         }.resume()
     }
