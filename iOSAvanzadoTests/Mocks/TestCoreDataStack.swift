@@ -7,6 +7,7 @@ struct TestCoreDataStack {
     let persistentContainer: NSPersistentContainer
     let backgroundContext: NSManagedObjectContext
     let mainContext: NSManagedObjectContext
+    let mockApiService: ApiProviderProtocol
     
     init() {
         persistentContainer = NSPersistentContainer(name: "iOSAvanzado")
@@ -26,17 +27,49 @@ struct TestCoreDataStack {
         backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         backgroundContext.parent = self.mainContext
+        
+        mockApiService = MockApiService()
     }
 }
 
+// MARK: - Protocol
 extension TestCoreDataStack: CoreDataStackProtocol {
     
-    func saveHeroes(_ heroesList: iOSAvanzado.Heroes) {
-        let hero1 = HeroDAO(context: mainContext)
-        hero1.name = "Goku"
+    func getHero(by heroId: String) -> iOSAvanzado.HeroDAO? {
+        let hero: HeroDAO?
+        let fetchHero = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
+        fetchHero.predicate = NSPredicate(format: "id = '\(heroId)'")
         
-        let hero2 = HeroDAO(context: mainContext)
-        hero2.name = "Vegeta"
+        hero = try? mainContext.fetch(fetchHero).first
+        
+        return hero
+    }
+    
+    
+    func saveHeroes(_ heroesList: iOSAvanzado.Heroes) {
+        for hero in heroesList {
+            let newHero = HeroDAO(context: mainContext)
+            
+            newHero.id = hero.id
+            newHero.name = hero.name
+            newHero.longDescription = hero.description
+            newHero.photo = hero.photo
+            newHero.favorite = hero.isFavorite ?? false
+        }
+        
+        try? mainContext.save()
+    }
+    
+    func saveHeroLocations(for heroId: String, _ locations: iOSAvanzado.HeroLocations) {
+        for location in locations {
+            let newLocation = LocationDAO(context: mainContext)
+            
+            newLocation.id = location.id
+            newLocation.date = location.date
+            newLocation.latitude = location.latitude
+            newLocation.longitude = location.longitude
+            newLocation.hero = getHero(by: heroId)
+        }
         
         try? mainContext.save()
     }
@@ -52,24 +85,24 @@ extension TestCoreDataStack: CoreDataStackProtocol {
         let fetchRequest = NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
         let locations = try? mainContext.fetch(fetchRequest)
         
+        
         return locations
     }
     
-    func saveHeroLocations(for heroId: String, _ locations: iOSAvanzado.HeroLocations) {
-        let location = LocationDAO(context: mainContext)
-        location.id = "someId"
-        
-        try? mainContext.save()
-    }
-    
     func deleteHeroesData() {
-        let delete = NSBatchDeleteRequest(fetchRequest: HeroDAO.fetchRequest())
-        try? mainContext.execute(delete)
+        let heroes = fetchHeroes()
+        
+        heroes?.forEach {
+            mainContext.delete($0)
+        }
     }
     
     func deleteLocationsData() {
-        let delete = NSBatchDeleteRequest(fetchRequest: LocationDAO.fetchRequest())
-        try? mainContext.execute(delete)
+        let locations = fetchHeroLocations()
+        
+        locations?.forEach {
+            mainContext.delete($0)
+        }
     }
     
     func deleteAllData() {

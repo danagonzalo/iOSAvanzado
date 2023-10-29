@@ -43,7 +43,7 @@ class MockApiService {
                 "dateShow": "2023-01-10T00:00:00Z",
             ],
             [
-                "hero": [ "id": "D13A40E5-4418-4223-9CE6-D2F9A28EBE94"],
+                "hero": ["id": "D13A40E5-4418-4223-9CE6-D2F9A28EBE94"],
                 "id": "DF243536-4F4F-4350-A6A4-046AC3847EA6",
                 "latitud": "38.8202084625344",
                 "longitud": "-77.036",

@@ -4,9 +4,10 @@ import CoreData
 
 public protocol CoreDataStackProtocol {
     func saveHeroes(_ heroesList: Heroes)
+    func saveHeroLocations(for heroId: String, _ locations: HeroLocations)
+    func getHero(by heroId: String) -> HeroDAO?
     func fetchHeroes() -> [HeroDAO]?
     func fetchHeroLocations() -> [LocationDAO]?
-    func saveHeroLocations(for heroId: String, _ locations: HeroLocations)
     func deleteHeroesData()
     func deleteLocationsData()
     func deleteAllData()
@@ -73,7 +74,7 @@ class CoreDataStack: CoreDataStackProtocol {
         try? context.save()
     }
     
-    private func getHero(by heroId: String) -> HeroDAO? {
+    func getHero(by heroId: String) -> HeroDAO? {
         let hero: HeroDAO?
         let fetchHero = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
         fetchHero.predicate = NSPredicate(format: "id = '\(heroId)'")
