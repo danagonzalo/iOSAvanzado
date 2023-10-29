@@ -42,6 +42,7 @@
 		9960D3B22AEC136A006E0C2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9960D3B12AEC136A006E0C2C /* Map.storyboard */; };
 		9960D3B42AEC1376006E0C2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B32AEC1376006E0C2C /* MapViewController.swift */; };
 		9960D3B62AEC1380006E0C2C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9960D3B52AEC1380006E0C2C /* MapViewModel.swift */; };
+		996FBBD62AEDF1B300BEA394 /* MockApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FBBD52AEDF1B300BEA394 /* MockApiProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		9960D3B12AEC136A006E0C2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		9960D3B32AEC1376006E0C2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9960D3B52AEC1380006E0C2C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		996FBBD52AEDF1B300BEA394 /* MockApiProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApiProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		992194E92AE7EEEE00FAB0CC /* iOSAvanzadoTests */ = {
 			isa = PBXGroup;
 			children = (
+				996FBBD42AEDF1A500BEA394 /* Mocks */,
 				992194EA2AE7EEEE00FAB0CC /* iOSAvanzadoTests.swift */,
 			);
 			path = iOSAvanzadoTests;
@@ -329,6 +332,14 @@
 				9960D3B52AEC1380006E0C2C /* MapViewModel.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		996FBBD42AEDF1A500BEA394 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				996FBBD52AEDF1B300BEA394 /* MockApiProvider.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				992194EB2AE7EEEE00FAB0CC /* iOSAvanzadoTests.swift in Sources */,
+				996FBBD62AEDF1B300BEA394 /* MockApiProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

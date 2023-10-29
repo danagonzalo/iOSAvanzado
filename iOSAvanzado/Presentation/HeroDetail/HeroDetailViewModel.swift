@@ -23,8 +23,8 @@ class HeroDetailViewModel: HeroDetailViewControllerDelegate {
             guard let token = self?.secureDataProvider.getToken() else { return }
 
             ApiProvider.shared.getLocations(for: self?.hero.id, token: token) { [weak self] heroLocations in
-                try? self?.heroLocations = heroLocations.get()
-                try? self?.viewState?(.update(hero: self?.hero, locations: heroLocations.get()))
+                self?.heroLocations = heroLocations
+                self?.viewState?(.update(hero: self?.hero, locations: heroLocations))
             }
         }
     }

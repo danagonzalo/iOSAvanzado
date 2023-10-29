@@ -34,10 +34,10 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
                 
                 DispatchQueue.main.async { [weak self] in
                     self?.database.deleteHeroesData()
-                    try? self?.database.fetchHeroes(heroes.get())
+                    self?.database.fetchHeroes(heroes)
                 }
                 
-                try? self?.heroesList = heroes.get()
+                self?.heroesList = heroes
                 self?.viewState?(.updateData)
             }
         }

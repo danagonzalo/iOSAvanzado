@@ -24,7 +24,7 @@ final class MapViewModel: MapViewControllerDelegate {
             
             ApiProvider.shared.getHeroes(by: "", token: token) { heroes in
                 var heroesList: Heroes = []
-                try? heroesList = heroes.get()
+                try? heroesList = heroes
                 
                 for hero in heroesList {
                     self?.getLocations(for: hero, token: token)
@@ -36,11 +36,11 @@ final class MapViewModel: MapViewControllerDelegate {
     private func getLocations(for hero: Hero, token: String) {
         ApiProvider.shared.getLocations(for: hero.id, token: token) { [weak self] locations in
             DispatchQueue.main.async { [weak self] in
-                try? self?.database.fetchLocations(for: hero.id ?? "", locations.get())
+                self?.database.fetchLocations(for: hero.id ?? "", locations)
             }
             
-            try? self?.heroLocationsList = locations.get()
-            try? self?.viewState?(.loadData(hero: hero, locations: locations.get()))
+            self?.heroLocationsList = locations
+            self?.viewState?(.loadData(hero: hero, locations: locations))
         }
     }
 }

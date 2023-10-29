@@ -1,8 +1,8 @@
 import Foundation
 
-typealias Heroes = [Hero]
+public typealias Heroes = [Hero]
 
-struct Hero: Codable {
+public struct Hero: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -11,9 +11,9 @@ struct Hero: Codable {
         case isFavorite = "favorite"
     }
 
-    let id: String?
-    let name: String?
-    let description: String?
-    let photo: String?
-    let isFavorite: Bool?
+    public let id: String?
+    public let name: String?
+    public let description: String?
+    public let photo: String?
+    public let isFavorite: Bool?
 }
