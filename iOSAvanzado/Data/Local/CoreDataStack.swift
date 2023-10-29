@@ -52,19 +52,10 @@ class CoreDataStack: CoreDataStackProtocol {
     
     //MARK: - Initializer
     init() {
-        //        DispatchQueue.main.async {
         self.context = CoreDataStack.persistentContainer.viewContext
         self.context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
-        //        }
     }
     
-    // MARK: Fetch data
-    //    func fetchHeroes() -> [HeroDAO]? {
-    //        let fetchRequest = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
-    //        let heroes = try? context.fetch(fetchRequest)
-    //
-    //        return heroes
-    //    }
     func fetchHeroes() -> Heroes {
         //        let managedObjectContext = persistentContainer.viewContext
         var heroes: [HeroDAO] = []
@@ -99,10 +90,10 @@ class CoreDataStack: CoreDataStackProtocol {
             newList.append($0.toModel()!)
         }
         
-        
         return newList
-        
     }
+    
+    
     
     // MARK: - Save data
     func saveHeroes(_ heroesList: Heroes) {
@@ -161,6 +152,21 @@ class CoreDataStack: CoreDataStackProtocol {
         location = try? context.fetch(fetchLocation).first
         
         return location
+    }
+    
+    
+    // MARK: - Get locations for hero
+    func getLocations(for heroId: String) -> HeroLocations {
+        let locations = fetchHeroLocations()
+        
+        var newList: HeroLocations = []
+        
+        for location in locations {
+            guard let newLocation = getLocation(by: location.id!)?.toModel() else { return [] }
+            newList.append(newLocation)
+        }
+        
+        return newList
     }
     
     

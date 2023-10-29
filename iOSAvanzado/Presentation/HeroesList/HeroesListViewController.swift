@@ -50,6 +50,8 @@ class HeroesListViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LIST IS USER LOGGED: \(SecureDataProvider.shared.isLogged)")
+
         initViews()
         setObservers()
         viewModel?.onViewAppear()

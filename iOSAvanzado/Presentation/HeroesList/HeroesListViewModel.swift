@@ -69,7 +69,6 @@ class HeroesListViewModel: HeroesListViewControllerDelegate {
         // Borramos el token al cerrar sesión
         database.deleteAllData()
         
-        
         SecureDataProvider.shared.remove(token: SecureDataProvider.shared.getToken() ?? "")
         SecureDataProvider.shared.isLogged = false
     }

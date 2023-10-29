@@ -20,10 +20,19 @@ final class MapViewModel: MapViewControllerDelegate {
                 self?.database.deleteLocationsData()
             }
             
-            
-            ApiProvider.shared.getHeroes(by: "") { heroes in
-                for hero in heroes {
-                    self?.getLocations(for: hero)
+            if SecureDataProvider.shared.isLogged {
+                self?.heroLocationsList = self?.database.fetchHeroLocations() ?? []
+                
+                let heroesList = self?.database.fetchHeroes()
+                
+                heroesList?.forEach({ hero in
+                    self?.viewState?(.loadData(hero: hero, locations: self?.heroLocationsList ?? []))
+                })
+            } else {
+                ApiProvider.shared.getHeroes(by: "") { heroes in
+                    for hero in heroes {
+                        self?.getLocations(for: hero)
+                    }
                 }
             }
         }
