@@ -46,7 +46,12 @@ class ApiProvider {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Basic \(loginData)", forHTTPHeaderField: "Authorization")
 
+        
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            
+            let urlResponse = response as? HTTPURLResponse
+            let statusCode = urlResponse?.statusCode
+            
             guard error == nil else {
                 completion(.failure(.unknown))
                 return
@@ -56,9 +61,10 @@ class ApiProvider {
                 completion(.failure(.noData))
                 return
             }
-            
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                completion(.failure(.statusCode(code: 200)))
+
+
+            guard statusCode == 200 else {
+                completion(.failure(.statusCode(code: statusCode)))
                 return
             }
 
