@@ -3,6 +3,7 @@ import KeychainSwift
 
 
 public protocol SecureDataProviderProtocol {
+    var isLogged: Bool { get }
     func save(token: String)
     func getToken() -> String?
     func remove(token: String)
@@ -11,6 +12,8 @@ public protocol SecureDataProviderProtocol {
 final class SecureDataProvider: SecureDataProviderProtocol {
 
     static let shared: SecureDataProvider = .init()
+    var isLogged: Bool = false
+    
     private let keychain = KeychainSwift()
 
     private enum Key {

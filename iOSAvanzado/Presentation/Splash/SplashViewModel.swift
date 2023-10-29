@@ -40,6 +40,7 @@ class SplashViewModel: SplashViewControllerDelegate {
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(3)) {
             self.isLogged ? self.viewState?(.navigateToHeroes) : self.viewState?(.navigateToLogin)
+            SecureDataProvider.shared.isLogged = self.isLogged
         }
     }
 }

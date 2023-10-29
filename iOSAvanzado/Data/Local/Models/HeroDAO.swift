@@ -1,11 +1,3 @@
-//
-//  HeroDAO+CoreDataProperties.swift
-//  iOSAvanzado
-//
-//  Created by Dana Gonzalo on 26/10/23.
-//
-//
-
 import Foundation
 import CoreData
 
@@ -43,6 +35,18 @@ extension HeroDAO {
 
 }
 
-extension HeroDAO : Identifiable {
+extension HeroDAO : Identifiable { }
 
+extension HeroDAO: ModelConvertible {
+    static var entityName = "HeroDAO"
+
+    func toModel() -> Hero? {
+        return Hero(
+            id: id,
+            name: name,
+            description: longDescription,
+            photo: photo,
+            isFavorite: favorite
+        )
+    }
 }

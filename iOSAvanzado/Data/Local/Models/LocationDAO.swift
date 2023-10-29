@@ -14,7 +14,7 @@ import CoreData
 public class LocationDAO: NSManagedObject {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LocationDAO> {
-        return NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
+        return NSFetchRequest<LocationDAO>(entityName: "HeroDAO")
     }
 
     @NSManaged public var date: String?
@@ -24,6 +24,18 @@ public class LocationDAO: NSManagedObject {
     @NSManaged public var hero: HeroDAO?
 }
 
-extension LocationDAO : Identifiable {
+extension LocationDAO : Identifiable { }
 
+extension LocationDAO: ModelConvertible {
+    static var entityName = "LocationDAO"
+    
+    func toModel() -> HeroLocation? {
+        return HeroLocation(
+            id: id,
+            latitude: latitude,
+            longitude: longitude,
+            date: date,
+            hero: hero?.toModel()
+        )
+    }
 }
