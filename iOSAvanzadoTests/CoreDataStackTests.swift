@@ -72,7 +72,7 @@ final class CoreDataStackTests: XCTestCase {
         let heroes = sut.fetchHeroes()
         
         XCTAssertNotNil(heroes)
-        XCTAssertEqual(heroes?.count, 2)
+        XCTAssertEqual(heroes.count, 2)
         expectation.fulfill()
         
         wait(for: [expectation], timeout: 10.0)
@@ -88,7 +88,7 @@ final class CoreDataStackTests: XCTestCase {
         
         let heroesFetched = sut.fetchHeroes()
         
-        XCTAssertEqual(heroesFetched?.count, 0)
+        XCTAssertEqual(heroesFetched.count, 0)
         expectation.fulfill()
         
         wait(for: [expectation], timeout: 10.0)
@@ -119,7 +119,7 @@ final class CoreDataStackTests: XCTestCase {
         let locations = sut.fetchHeroLocations()
         
         XCTAssertNotNil(locations)
-        XCTAssertEqual(locations?.count, 5)
+        XCTAssertEqual(locations.count, 5)
         expectation.fulfill()
         
         wait(for: [expectation], timeout: 10.0)
@@ -135,7 +135,7 @@ final class CoreDataStackTests: XCTestCase {
         
         let locationsFetched = sut.fetchHeroLocations()
         
-        XCTAssertEqual(locationsFetched?.count, 0)
+        XCTAssertEqual(locationsFetched.count, 0)
         expectation.fulfill()
         
         wait(for: [expectation], timeout: 10.0)

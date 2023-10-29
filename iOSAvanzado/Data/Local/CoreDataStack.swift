@@ -23,15 +23,29 @@ protocol ModelConvertible {
     func toModel() -> Model?
 }
 
+//public protocol CoreDataStackProtocol {
+//    func saveHeroes(_ heroesList: Heroes)
+//    func saveHeroLocations(for heroId: String, _ locations: HeroLocations)
+//    func getHero(by heroId: String) -> HeroDAO?
+//    func fetchHeroes() -> Heroes
+//    func fetchHeroLocations() -> HeroLocations
+//    func deleteHeroesData()
+//    func deleteLocationsData()
+//    func deleteAllData()
+//}
+
 public protocol CoreDataStackProtocol {
+    func fetchHeroes() -> Heroes
+    func fetchHeroLocations() -> HeroLocations
     func saveHeroes(_ heroesList: Heroes)
     func saveHeroLocations(for heroId: String, _ locations: HeroLocations)
     func getHero(by heroId: String) -> HeroDAO?
-    func fetchHeroes() -> Heroes
-    func fetchHeroLocations() -> HeroLocations
+    func getLocation(by id: String) -> LocationDAO?
+    func getLocations(for heroId: String) -> HeroLocations
     func deleteHeroesData()
     func deleteLocationsData()
     func deleteAllData()
+    
 }
 
 class CoreDataStack: CoreDataStackProtocol {
@@ -56,6 +70,7 @@ class CoreDataStack: CoreDataStackProtocol {
         self.context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
     }
     
+    // MARK: - Fetch all data
     func fetchHeroes() -> Heroes {
         //        let managedObjectContext = persistentContainer.viewContext
         var heroes: [HeroDAO] = []
@@ -93,8 +108,6 @@ class CoreDataStack: CoreDataStackProtocol {
         return newList
     }
     
-    
-    
     // MARK: - Save data
     func saveHeroes(_ heroesList: Heroes) {
         for hero in heroesList {
@@ -115,7 +128,6 @@ class CoreDataStack: CoreDataStackProtocol {
         }
         
     }
-    
     
     // MARK: - Fetch locations
     func saveHeroLocations(for heroId: String, _ locations: HeroLocations) {
@@ -153,7 +165,6 @@ class CoreDataStack: CoreDataStackProtocol {
         
         return location
     }
-    
     
     // MARK: - Get locations for hero
     func getLocations(for heroId: String) -> HeroLocations {

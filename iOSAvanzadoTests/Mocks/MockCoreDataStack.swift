@@ -30,6 +30,50 @@ struct MockCoreDataStack {
 // MARK: - Protocol
 extension MockCoreDataStack: CoreDataStackProtocol {
     
+    func fetchHeroes() -> iOSAvanzado.Heroes {
+        var heroesList: Heroes = []
+        mockApiService.getHeroes(by: "") { heroes in
+            heroesList = heroes
+        }
+        
+        return heroesList
+    }
+    
+    func fetchHeroLocations() -> iOSAvanzado.HeroLocations {
+        var locationsList: HeroLocations = []
+        let heroesList: Heroes = fetchHeroes()
+        
+        for hero in heroesList {
+            mockApiService.getLocations(for: hero.id ?? "") { locations in
+                locationsList = locations
+            }
+        }
+        
+        return locationsList
+    }
+    
+    func getLocation(by id: String) -> iOSAvanzado.LocationDAO? {
+        let location: LocationDAO?
+        
+        let fetchLocation = NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
+        fetchLocation.predicate = NSPredicate(format: "id = '\(id)'")
+        
+        location = try? context.fetch(fetchLocation).first
+        
+        return location
+    }
+    
+    func getLocations(for heroId: String) -> iOSAvanzado.HeroLocations {
+        var locationsList: HeroLocations = []
+        
+        mockApiService.getLocations(for: heroId) { locations in
+            locationsList = locations
+        }
+        
+        return locationsList
+    }
+    
+    
     func getHero(by heroId: String) -> iOSAvanzado.HeroDAO? {
         let hero: HeroDAO?
         let fetchHero = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
@@ -68,52 +112,28 @@ extension MockCoreDataStack: CoreDataStackProtocol {
         
         try? context.save()
     }
-    
-    func fetchHeroes() -> [iOSAvanzado.HeroDAO]? {
-        let fetchRequest = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
-        let heroes = try? context.fetch(fetchRequest)
-        
-        return heroes
-    }
-    
-    func fetchHeroLocations() -> [iOSAvanzado.LocationDAO]? {
-        let fetchRequest = NSFetchRequest<LocationDAO>(entityName: "LocationDAO")
-        let locations = try? context.fetch(fetchRequest)
-        
-        
-        return locations
-    }
+
     
     func deleteHeroesData() {
         let heroes = fetchHeroes()
         
-        heroes?.forEach {
-            context.delete($0)
+        for hero in heroes {
+            let heroToDelete = getHero(by: hero.id!)!
+            context.delete(heroToDelete)
         }
     }
     
     func deleteLocationsData() {
         let locations = fetchHeroLocations()
         
-        locations?.forEach {
-            context.delete($0)
+        for location in locations {
+            let locationToDelete = getLocation(by: location.id!)!
+            context.delete(locationToDelete)
         }
     }
     
     func deleteAllData() {
         deleteHeroesData()
         deleteLocationsData()
-    }
-}
-
-// MARK: - Other functions
-extension MockCoreDataStack {
-    func fetchHero(by heroName: String) -> [HeroDAO]? {
-        let fetchRequest = NSFetchRequest<HeroDAO>(entityName: "HeroDAO")
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "name == %@", heroName)
-        
-        let heroFetched = try? context.fetch(fetchRequest)
-        return heroFetched
     }
 }
